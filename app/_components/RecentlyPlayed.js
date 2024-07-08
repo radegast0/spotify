@@ -21,6 +21,9 @@ const RecentlyPlayed = () => {
     };
 
     fetchSong();
+    const intervalId = setInterval(fetchSong, 600000);
+
+    return () => clearInterval(intervalId);
   }, []);
   function timeSince(date) {
     const seconds = Math.floor((new Date() - new Date(date)) / 1000);

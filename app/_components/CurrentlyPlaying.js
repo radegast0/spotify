@@ -25,7 +25,7 @@ const CurrentlyPlaying = () => {
       }
     };
     fetchSong();
-    const intervalId = setInterval(fetchSong, 10000); // 10 seconds
+    const intervalId = setInterval(fetchSong, 10000);
 
     return () => clearInterval(intervalId);
   }, []);
