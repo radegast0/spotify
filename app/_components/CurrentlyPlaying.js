@@ -4,7 +4,6 @@ import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 
-export const dynamic = "force-dynamic";
 const CurrentlyPlaying = () => {
   const [currentSong, setCurrentSong] = useState(null);
   const [currentLink, setCurrentLink] = useState(null);
