@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
+export const dynamic = "force-dynamic";
+
 async function getAccessToken() {
   const refresh_token = process.env.REFRESH_TOKEN;
   const response = await axios.post(
@@ -33,11 +35,7 @@ async function getRecentlyPlayed(accessToken) {
       },
     },
   );
-  console.log(response);
-  return {
-    response: response.data,
-    items: response.data.items,
-  };
+  return response.data.items;
 }
 
 async function getCurrentlyPlaying(accessToken) {

@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
 const RecentlyPlayed = () => {
   const [recentSongs, setRecentSongs] = useState([]);
   useEffect(() => {
@@ -14,7 +15,7 @@ const RecentlyPlayed = () => {
         console.log(response);
         const { recentlyPlayed } = response.data;
 
-        setRecentSongs(recentlyPlayed.items);
+        setRecentSongs(recentlyPlayed);
       } catch (error) {
         console.error("Error fetching recently played song:", error);
       }
