@@ -33,7 +33,11 @@ async function getRecentlyPlayed(accessToken) {
       },
     },
   );
-  return response.data.items;
+  console.log(response);
+  return {
+    response: response.data,
+    items: response.data.items,
+  };
 }
 
 async function getCurrentlyPlaying(accessToken) {

@@ -10,9 +10,10 @@ const RecentlyPlayed = () => {
       try {
         const response = await axios.get("/api/spotify");
 
+        console.log(response);
         const { recentlyPlayed } = response.data;
 
-        setRecentSongs(recentlyPlayed);
+        setRecentSongs(recentlyPlayed.items);
       } catch (error) {
         console.error("Error fetching recently played song:", error);
       }
