@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 const CurrentlyPlaying = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -25,7 +26,7 @@ const CurrentlyPlaying = () => {
     };
     fetchSong();
     const intervalId = setInterval(fetchSong, 10000); // 10 seconds
-    
+
     return () => clearInterval(intervalId);
   }, []);
 
@@ -34,10 +35,12 @@ const CurrentlyPlaying = () => {
       {currentSong && (
         <div className="mb-5">
           <Link target="_blank" href={currentLink}>
-            <img
+            <Image
               src={currentSong.album.images[0].url}
               alt={currentSong.album.name}
-              className="h-24 w-24 object-cover"
+              width={96}
+              height={96}
+              className="object-cover"
             />
           </Link>
           <div>

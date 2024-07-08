@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 const RecentlyPlayed = () => {
   const [recentSongs, setRecentSongs] = useState([]);
@@ -44,9 +45,11 @@ const RecentlyPlayed = () => {
       {recentSongs.map((song, index) => (
         <div key={index} className="mb-5">
           <Link target="_blank" href={song.track.external_urls.spotify}>
-            <img
+            <Image
               src={song.track.album.images[0].url}
               alt={song.track.album.name}
+              width={96}
+              height={96}
               className="h-24 w-24 object-cover"
             />
           </Link>
