@@ -12,6 +12,10 @@ const Experience = () => {
           <meshBasicMaterial color="hotpink" />
           <boxGeometry />
         </mesh>
+        <mesh>
+          <meshBasicMaterial color="hotpink" />
+          <boxGeometry />
+        </mesh>
       </Stage>
     </Canvas>
   );
