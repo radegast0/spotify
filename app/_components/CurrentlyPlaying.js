@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
+import ProgressBar from "./ProgressBar";
 
 const CurrentlyPlaying = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -25,29 +26,38 @@ const CurrentlyPlaying = () => {
       }
     };
     fetchSong();
-    const intervalId = setInterval(fetchSong, 10000);
+    const intervalId = setInterval(fetchSong, 2000);
 
     return () => clearInterval(intervalId);
   }, []);
+  // console.log(currentSong);
 
   return (
     <>
       {currentSong && (
-        <div className="mb-5">
-          <Link target="_blank" href={currentLink}>
+        <div className="group relative w-[300px]">
+          <Link target={currentSong.album.images[1].url} href={currentLink}>
             <Image
-              src={currentSong.album.images[0].url}
+              priority
+              src={currentSong.album.images[1].url}
               alt={currentSong.album.name}
-              width={96}
-              height={96}
-              className="object-cover"
+              width={300}
+              height={300}
+              className="pointer-events-none aspect-square object-cover"
             />
+            <ProgressBar className={'absolute bottom-[95px] h-1 w-full '} />
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white mix-blend-luminosity shadow-black/50 backdrop-blur-[2px] backdrop-brightness-95 transition-all duration-300 [text-shadow:1px_1px_2px_var(--tw-shadow-color)] group-hover:backdrop-blur-md">
+              <div className="overflow-hidden overflow-ellipsis text-nowrap text-xl font-bold">
+                {currentSong.name}
+              </div>
+              <div className="overflow-hidden overflow-ellipsis text-nowrap text-sm font-medium">
+                {currentSong.artists.map((artist) => artist.name).join(", ")}
+              </div>
+              <div className="overflow-hidden overflow-ellipsis text-nowrap text-sm font-extralight">
+                {currentSong.album.name}
+              </div>
+            </div>
           </Link>
-          <div>
-            <strong>{currentSong.name}</strong> by{" "}
-            {currentSong.artists.map((artist) => artist.name).join(", ")}
-          </div>
-          <div>Album: {currentSong.album.name}</div>
         </div>
       )}
     </>

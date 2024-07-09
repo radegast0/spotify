@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-export const dynamic = "force-dynamic";
-
 async function getAccessToken() {
   const refresh_token = process.env.REFRESH_TOKEN;
   const response = await axios.post(
@@ -49,17 +47,26 @@ async function getCurrentlyPlaying(accessToken) {
   );
   return response.data.item;
 }
+async function getProgress(accessToken) {
+  const response = await axios.get("https://api.spotify.com/v1/me/player", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return response.data ;
+}
 
 export async function GET() {
   try {
     const accessToken = await getAccessToken();
 
-    const [recentlyPlayed, currentlyPlaying] = await Promise.all([
+    const [recentlyPlayed, currentlyPlaying, progressData] = await Promise.all([
       getRecentlyPlayed(accessToken),
       getCurrentlyPlaying(accessToken),
+      getProgress(accessToken),
     ]);
 
-    const responseData = { recentlyPlayed, currentlyPlaying };
+    const responseData = { recentlyPlayed, currentlyPlaying, progressData };
     return NextResponse.json(responseData);
   } catch (error) {
     console.error(error);

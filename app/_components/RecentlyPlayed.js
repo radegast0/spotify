@@ -11,7 +11,6 @@ const RecentlyPlayed = () => {
       try {
         const response = await axios.get("/api/spotify");
 
-        console.log(response);
         const { recentlyPlayed } = response.data;
 
         setRecentSongs(recentlyPlayed);
@@ -21,7 +20,7 @@ const RecentlyPlayed = () => {
     };
 
     fetchSong();
-    const intervalId = setInterval(fetchSong, 600000);
+    const intervalId = setInterval(fetchSong, 60000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -43,17 +42,19 @@ const RecentlyPlayed = () => {
     }
     return Math.floor(seconds) + " seconds ago";
   }
+  // console.log(recentSongs[0]?.track.album);
   return (
     <>
       {recentSongs.map((song, index) => (
         <div key={index} className="mb-5">
           <Link target="_blank" href={song.track.external_urls.spotify}>
             <Image
-              src={song.track.album.images[0].url}
+              priority
+              src={song.track.album.images[2].url}
               alt={song.track.album.name}
-              width={96}
-              height={96}
-              className="h-24 w-24 object-cover"
+              width={64}
+              height={64}
+              className="h-auto w-auto object-cover"
             />
           </Link>
           <div className="flex flex-col">
