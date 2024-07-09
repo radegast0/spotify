@@ -1,40 +1,26 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+"use client";
+import React from "react";
+import useApiFetch from "../_hooks/useApiFetch";
 
 const ProgressBar = ({ className, ...props }) => {
-  const [currentProgress, setCurrentProgress] = useState(null);
-  const [percentage, setPercentage] = useState(0);
+  const {
+    data: currentProgressData,
+    loading,
+    error,
+  } = useApiFetch("/api/spotify", 2000);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/spotify");
-        const { progressData } = response.data;
-        if (progressData) {
-          setCurrentProgress(progressData);
-          setPercentage(
-            (progressData.progress_ms / progressData.item.duration_ms) * 100
-          );
-        } else {
-          setCurrentProgress("No progress data available");
-        }
-      } catch (error) {
-        console.error("Error fetching progress data:", error);
-      }
-    };
-    fetchData();
-    const intervalId = setInterval(fetchData, 2000);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching data</div>;
 
-    return () => clearInterval(intervalId);
-  }, []);
-
-  // console.log(currentProgress);
-  // console.log(percentage);
+  const progressData = currentProgressData.progressData;
+  const percentage = progressData
+    ? (progressData.progress_ms / progressData.item.duration_ms) * 100
+    : 0;
 
   return (
     <div className={`${className} h-[6px]`} {...props}>
       <div
-        className="h-full bg-red-500 transition-all duration-1000 ease-linear rounded-r-full"
+        className="duration-2000 h-full rounded-r-full bg-red-500 transition-all ease-linear"
         style={{ width: `${percentage}%` }}
       ></div>
     </div>

@@ -1,29 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useApiFetch from "../_hooks/useApiFetch";
 
 const RecentlyPlayed = () => {
-  const [recentSongs, setRecentSongs] = useState([]);
-  useEffect(() => {
-    const fetchSong = async () => {
-      try {
-        const response = await axios.get("/api/spotify");
+  const {
+    data: recentSongs,
+    loading,
+    error,
+  } = useApiFetch("/api/spotify", 60000);
 
-        const { recentlyPlayed } = response.data;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching data</div>;
 
-        setRecentSongs(recentlyPlayed);
-      } catch (error) {
-        console.error("Error fetching recently played song:", error);
-      }
-    };
-
-    fetchSong();
-    const intervalId = setInterval(fetchSong, 60000);
-
-    return () => clearInterval(intervalId);
-  }, []);
   function timeSince(date) {
     const seconds = Math.floor((new Date() - new Date(date)) / 1000);
     let interval = seconds / 31536000;
@@ -42,10 +32,10 @@ const RecentlyPlayed = () => {
     }
     return Math.floor(seconds) + " seconds ago";
   }
-  // console.log(recentSongs[0]?.track.album);
+
   return (
     <>
-      {recentSongs.map((song, index) => (
+      {recentSongs.recentlyPlayed.map((song, index) => (
         <div key={index} className="mb-5">
           <Link target="_blank" href={song.track.external_urls.spotify}>
             <Image

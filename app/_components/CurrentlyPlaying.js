@@ -1,36 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useApiFetch from "../_hooks/useApiFetch";
 import ProgressBar from "./ProgressBar";
 
 const CurrentlyPlaying = () => {
-  const [currentSong, setCurrentSong] = useState(null);
-  const [currentLink, setCurrentLink] = useState(null);
+  const {
+    data: currentSongData,
+    loading,
+    error,
+  } = useApiFetch("/api/spotify", 2000);
 
-  useEffect(() => {
-    const fetchSong = async () => {
-      try {
-        const response = await axios.get("/api/spotify");
-        const { currentlyPlaying } = response.data;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching data</div>;
 
-        if (currentlyPlaying) {
-          setCurrentSong(currentlyPlaying);
-          setCurrentLink(currentlyPlaying.external_urls.spotify);
-        } else {
-          setCurrentSong(null);
-        }
-      } catch (error) {
-        console.error("Error fetching currently playing song:", error);
-      }
-    };
-    fetchSong();
-    const intervalId = setInterval(fetchSong, 2000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-  // console.log(currentSong);
+  const currentSong = currentSongData.currentlyPlaying;
+  const currentLink = currentSong ? currentSong.external_urls.spotify : null;
 
   return (
     <>
@@ -45,7 +31,7 @@ const CurrentlyPlaying = () => {
               height={300}
               className="pointer-events-none aspect-square object-cover"
             />
-            <ProgressBar className={'absolute bottom-[95px] h-1 w-full '} />
+            <ProgressBar className="absolute bottom-[95px] h-1 w-full" />
             <div className="absolute bottom-0 left-0 right-0 p-4 text-white mix-blend-luminosity shadow-black/50 backdrop-blur-[2px] backdrop-brightness-95 transition-all duration-300 [text-shadow:1px_1px_2px_var(--tw-shadow-color)] group-hover:backdrop-blur-md">
               <div className="overflow-hidden overflow-ellipsis text-nowrap text-xl font-bold">
                 {currentSong.name}

@@ -7,7 +7,7 @@ export default function Home() {
     <div className="">
       <div className="z-10">
         {/* <h1>Recently Played Songs</h1> */}
-        {/* <RecentlyPlayed /> */}
+        <RecentlyPlayed />
         <h1>Currently Playing</h1>
         <CurrentlyPlaying />
       </div>
