@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
+export const dynamic = "force-dynamic";
+
 async function getAccessToken() {
   const refresh_token = process.env.REFRESH_TOKEN;
   const response = await axios.post(
@@ -53,7 +55,7 @@ async function getProgress(accessToken) {
       Authorization: `Bearer ${accessToken}`,
     },
   });
-  return response.data ;
+  return response.data;
 }
 
 export async function GET() {
