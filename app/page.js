@@ -4,14 +4,12 @@ import Experience from "./experience/Experience";
 
 export default function Home() {
   return (
-    <div className="">
-      <div className="z-10">
-        {/* <h1>Recently Played Songs</h1> */}
+    <div className="w-screen h-screen">
+      {/* <div className="z-10">
         <RecentlyPlayed />
-        <h1>Currently Playing</h1>
         <CurrentlyPlaying />
-      </div>
-      {/* <Experience /> */}
+      </div> */}
+      <Experience />
     </div>
   );
 }
