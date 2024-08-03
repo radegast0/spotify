@@ -21,7 +21,7 @@ const Experience = () => {
       }}
       shadows
     >
-      <ambientLight intensity={2} />
+      <ambientLight intensity={1.5} />
       <Test />
       <OrbitControls />
       {/* <Scene /> */}
