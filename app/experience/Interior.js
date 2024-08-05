@@ -2,8 +2,8 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import React from "react";
 
 const Interior = () => {
-  const { nodes } = useGLTF("./models/interior.glb");
-  const bakedTexture = useTexture("./textures/baked-walls-2.jpg");
+  const { nodes } = useGLTF("./models/walls.glb");
+  const bakedTexture = useTexture("./textures/new-baked.jpg");
   bakedTexture.flipY = false;
 
   return (
