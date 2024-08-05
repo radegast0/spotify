@@ -1,12 +1,10 @@
 "use client";
-import { Backdrop, OrbitControls, Plane, Stage } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React from "react";
 
 import Interior from "./Interior";
-import Test from "./Test";
 import Computers from "./Computers";
-import Test2 from "./Test2";
 
 const Experience = () => {
   return (
