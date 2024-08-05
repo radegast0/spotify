@@ -2,13 +2,11 @@
 import { Backdrop, OrbitControls, Plane, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React from "react";
-import Gramaphone from "./Gramaphone";
-import Lights from "./lights/Lights";
-import Chair from "./Chair";
-import Computers from "./Computers";
-import Indoor from "./Indoor";
-import Scene from "./Scene";
+
+import Interior from "./Interior";
 import Test from "./Test";
+import Computers from "./Computers";
+import Test2 from "./Test2";
 
 const Experience = () => {
   return (
@@ -21,13 +19,13 @@ const Experience = () => {
       }}
       shadows
     >
-      <ambientLight intensity={1.5} />
-      <Test />
+      {/* <Test /> */}
+      {/* <Test2 /> */}
+      <Computers />
+      <ambientLight intensity={1} />
+      {/* <spotLight castShadow position={[1, 7, 1]} intensity={15} /> */}
+      <Interior />
       <OrbitControls />
-      {/* <Scene /> */}
-      {/* <Computers /> */}
-      {/* <Indoor /> */}
-      {/* <Gramaphone /> */}
     </Canvas>
   );
 };
