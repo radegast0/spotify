@@ -3,8 +3,8 @@ import React from "react";
 import useStore from "../store";
 
 const Screen = () => {
-  const texture = useTexture("./images/a.jpg");
-  const images = useStore((state) => state.images);
+  // const texture = useTexture("./images/a.jpg");
+  // const images = useStore((state) => state.images);
   console.log(images);
   
   return (

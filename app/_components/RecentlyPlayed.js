@@ -15,8 +15,6 @@ const RecentlyPlayed = () => {
 
   const images = useStore((state) => state.images);
   console.log(images);
-  
-  
 
   useEffect(() => {
     if (recentSongs) {

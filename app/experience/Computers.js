@@ -6,20 +6,20 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Computers(props) {
-  const { nodes, materials } = useGLTF('./models/asdasd.glb')
+  const { nodes, materials } = useGLTF('./models/computers.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Object_221.geometry}
-        material={materials.Texture}
-        position={[-0.947, 2.427, -0.538]}
-        rotation={[0, 0.967, 0]}
-        scale={0.457}
-      />
-    </group>
+    <mesh
+      castShadow
+      receiveShadow
+      geometry={nodes.Object_221003.geometry}
+      material={materials.Texture}
+      position={[-1.371, 1.267, -0.837]}
+      rotation={[-0.624, 0.933, 0.374]}
+      scale={0.457}
+    />
+  </group>
   )
 }
 
-useGLTF.preload('./models/asdasd.glb')
+useGLTF.preload('./models/computers.glb')

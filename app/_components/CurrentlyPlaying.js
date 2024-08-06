@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useApiFetch from "../_hooks/useApiFetch";
 import ProgressBar from "./ProgressBar";
+import useStore from "../store";
 
 const CurrentlyPlaying = () => {
   const {
@@ -11,6 +12,14 @@ const CurrentlyPlaying = () => {
     loading,
     error,
   } = useApiFetch("/api/spotify", 2000);
+
+  const setCurrentImage = useStore((state) => state.setCurrentImage);
+
+  useEffect(() => {
+    if (currentSongData && currentSongData.currentlyPlaying){
+      setCurrentImage(currentSongData.currentlyPlaying.album.images[2].url);
+    }
+  },[])
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error fetching data</div>;

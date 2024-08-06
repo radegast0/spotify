@@ -1,13 +1,14 @@
 "use client";
-import React from "react";
-import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useEffect } from "react";
+import { OrbitControls, useTexture } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
 
 import Interior from "./Interior";
 import Computers from "./Computers";
-import Screen from "./Screen";
-
-
+import Light from "./Light";
+import VinylPlayer from "./VinylPlayer";
+import Cover from "./Cover";
+import VinylBox from "./VinylBox";
 
 const Experience = () => {
   return (
@@ -20,11 +21,18 @@ const Experience = () => {
       }}
       shadows
     >
-      <Screen />
+      {/* <VinylBox /> */}
       <Computers />
       <ambientLight intensity={1} />
+      <VinylPlayer />
+      <Light />
       <Interior />
       <OrbitControls />
+
+      <VinylBox />
+      <Suspense>
+        <Cover />
+      </Suspense>
     </Canvas>
   );
 };

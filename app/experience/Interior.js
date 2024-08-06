@@ -3,7 +3,7 @@ import React from "react";
 
 const Interior = () => {
   const { nodes } = useGLTF("./models/walls.glb");
-  const bakedTexture = useTexture("./textures/new-baked.jpg");
+  const bakedTexture = useTexture("./textures/baked-interior.jpg");
   bakedTexture.flipY = false;
 
   return (
