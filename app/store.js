@@ -2,9 +2,11 @@ const { create } = require("zustand");
 
 const useStore = create((set) => ({
   images: [],
-  currentImage: null, // Default image
+  currentImageLow: null,
+  currentImageHigh: null,
   setImages: (images) => set({ images }),
-  setCurrentImage: (imageUrl) => set({ currentImage: imageUrl }),
+  setCurrentImageLow: (imageUrl) => set({ currentImageLow: imageUrl }),
+  setCurrentImageHigh: (imageUrl) => set({ currentImageHigh: imageUrl }),
 }));
 
 export default useStore;

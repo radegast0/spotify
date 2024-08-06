@@ -1,6 +1,6 @@
 "use client";
 import React, { Suspense, useEffect } from "react";
-import { OrbitControls, useTexture } from "@react-three/drei";
+import { Environment, OrbitControls, useTexture } from "@react-three/drei";
 import { Canvas, useLoader } from "@react-three/fiber";
 
 import Interior from "./Interior";
@@ -9,6 +9,7 @@ import Light from "./Light";
 import VinylPlayer from "./VinylPlayer";
 import Cover from "./Cover";
 import VinylBox from "./VinylBox";
+import { VinylDiskInner, VinylDiskOuter } from "./VinylDisk";
 
 const Experience = () => {
   return (
@@ -21,16 +22,18 @@ const Experience = () => {
       }}
       shadows
     >
-      {/* <VinylBox /> */}
+      <Environment preset="warehouse" environmentIntensity={0.3} />
       <Computers />
-      <ambientLight intensity={1} />
       <VinylPlayer />
       <Light />
       <Interior />
       <OrbitControls />
 
       <VinylBox />
+      <VinylDiskOuter />
+
       <Suspense>
+        <VinylDiskInner />
         <Cover />
       </Suspense>
     </Canvas>

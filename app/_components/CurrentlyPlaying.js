@@ -16,10 +16,10 @@ const CurrentlyPlaying = () => {
   const setCurrentImage = useStore((state) => state.setCurrentImage);
 
   useEffect(() => {
-    if (currentSongData && currentSongData.currentlyPlaying){
+    if (currentSongData && currentSongData.currentlyPlaying) {
       setCurrentImage(currentSongData.currentlyPlaying.album.images[2].url);
     }
-  },[])
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error fetching data</div>;

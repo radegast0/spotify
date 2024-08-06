@@ -8,7 +8,7 @@ import useStore from "../store";
 import GetSongs from "../_components/GetSongs";
 
 export default function Cover(props) {
-  const currentImage = useStore((state) => state.currentImage);
+  const currentImage = useStore((state) => state.currentImageHigh);
   const texture = useTexture(currentImage || "/images/default.jpeg");
 
   texture.flipY = false;
