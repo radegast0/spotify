@@ -33,10 +33,13 @@ export function VinylDiskInner(props) {
 
 export function VinylDiskOuter(props) {
   const { nodes, materials } = useGLTF("./models/vinyl-disk.glb");
+  const currentImage = useStore((state) => state.currentImageLow);
   const vinylDiskOuter = useRef();
 
   useFrame((state, delta) => {
-    vinylDiskOuter.current.rotation.z += 0.5 * delta;
+    if (currentImage) {
+      vinylDiskOuter.current.rotation.z += 0.5 * delta;
+    }
   });
 
   return (

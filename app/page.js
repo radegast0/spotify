@@ -1,7 +1,7 @@
 import RecentlyPlayed from "./_components/RecentlyPlayed";
 import CurrentlyPlaying from "./_components/CurrentlyPlaying";
 import Experience from "./experience/Experience";
-import GetSongs from "./_components/GetSongs";
+import GetSongs from "./_hooks/useCurrentSong";
 
 export default function Home() {
   return (
