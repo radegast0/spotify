@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useApiFetch from "../_hooks/useApiFetch";
+import useStore from "../store";
 
 const RecentlyPlayed = () => {
   const {
@@ -10,6 +11,21 @@ const RecentlyPlayed = () => {
     loading,
     error,
   } = useApiFetch("/api/spotify", 60000);
+  const setImages = useStore((state) => state.setImages);
+
+  const images = useStore((state) => state.images);
+  console.log(images);
+  
+  
+
+  useEffect(() => {
+    if (recentSongs) {
+      const images = recentSongs.recentlyPlayed.map(
+        (song) => song.track.album.images[2].url,
+      );
+      setImages(images);
+    }
+  }, [recentSongs, setImages]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error fetching data</div>;
