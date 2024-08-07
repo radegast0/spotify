@@ -1,7 +1,10 @@
 "use client";
 import React, { Suspense, useEffect } from "react";
-import { Environment, OrbitControls, useTexture } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
+import {
+  Environment,
+  OrbitControls,
+} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 
 import Interior from "./Interior";
 import Computers from "./Computers";
@@ -13,12 +16,13 @@ import { VinylDiskInner, VinylDiskOuter } from "./VinylDisk";
 import Screens from "./Screens";
 import ScreensFallback from "./ScreensFallback";
 
+
 const Experience = () => {
   return (
     <Canvas
       camera={{
         position: [2, 3, 8],
-        fov: 75,
+        fov: 55,
         near: 0.1,
         far: 1000,
       }}

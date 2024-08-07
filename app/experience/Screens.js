@@ -101,11 +101,6 @@ export default function Screens(props) {
           scale={meshProps.scale}
         >
           <TextureLoader url={meshProps.textureUrl} />
-          {hovered === index && (
-            <Edges scale={2}>
-              <Outlines color="white" thickness={2} angle={0} />
-            </Edges>
-          )}
         </mesh>
       ))}
     </group>

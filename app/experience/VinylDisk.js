@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import React, { useRef, useState } from "react";
+import { Outlines, useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import useStore from "../store";
 
@@ -32,6 +32,8 @@ export function VinylDiskInner(props) {
 }
 
 export function VinylDiskOuter(props) {
+  const [hovered, setHovered] = useState(false);
+
   const { nodes, materials } = useGLTF("./models/vinyl-disk.glb");
   const currentImage = useStore((state) => state.currentImageLow);
   const vinylDiskOuter = useRef();
@@ -47,6 +49,8 @@ export function VinylDiskOuter(props) {
       ref={vinylDiskOuter}
       castShadow
       receiveShadow
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
       geometry={
         nodes["#REC0002_33_Highway_To_Hell_#REC0002_Textures_0"].geometry
       }
@@ -55,7 +59,9 @@ export function VinylDiskOuter(props) {
       rotation={[-1.571, 0, 0]}
       scale={2.462}
       {...props}
-    />
+    >
+      {hovered && <Outlines thickness={0.005} angle={10} color={"white"} />}
+    </mesh>
   );
 }
 
