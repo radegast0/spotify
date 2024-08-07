@@ -4,20 +4,20 @@ import useCameraRig from "../_hooks/useCameraRig";
 
 const cameraPositions = [
   {
-    position: {
-      x: -0.49,
-      y: 2.54,
-      z: 1.16,
-    },
-    target: {
-      x: -0.91,
-      y: 2.52,
-      z: 1.02,
-    },
+    position: { x: -0.49, y: 2.54, z: 1.16 },
+    target: { x: -0.91, y: 2.52, z: 1.02 },
   },
   {
     position: { x: -0.15, y: 2.84, z: -0.08 },
     target: { x: -1.08, y: 2.46, z: -0.62 },
+  },
+  {
+    position: { x: 0.58, y: 1.81, z: 0.44 },
+    target: { x: -1.39, y: 1.07, z: 0.61 },
+  },
+  {
+    position: { x: 0.72, y: 1.9, z: -0.47 },
+    target: { x: 0.102, y: 1.6, z: -1.311 },
   },
 ];
 
