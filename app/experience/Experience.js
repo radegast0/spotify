@@ -1,39 +1,31 @@
 "use client";
-import React, { Suspense, useEffect } from "react";
-import {
-  Environment,
-  OrbitControls,
-} from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-
-import Interior from "./Interior";
+import { Environment, OrbitControls } from "@react-three/drei";
+import React, { Suspense, useRef } from "react";
 import Computers from "./Computers";
-import Light from "./Light";
 import VinylPlayer from "./VinylPlayer";
-import Cover from "./Cover";
+import Light from "./Light";
+import Interior from "./Interior";
 import VinylBox from "./VinylBox";
 import { VinylDiskInner, VinylDiskOuter } from "./VinylDisk";
-import Screens from "./Screens";
 import ScreensFallback from "./ScreensFallback";
-
+import Screens from "./Screens";
+import Cover from "./Cover";
+import { useThree } from "@react-three/fiber";
 
 const Experience = () => {
+  const { camera } = useThree();
+  const controlsRef = useRef();
+  // console.log(camera?.position);
+  console.log("target:", controlsRef?.current?.target);
+
   return (
-    <Canvas
-      camera={{
-        position: [2, 3, 8],
-        fov: 55,
-        near: 0.1,
-        far: 1000,
-      }}
-      shadows
-    >
+    <>
       <Environment preset="warehouse" environmentIntensity={0.3} />
-      <Computers />
+      <Computers controlsRef={controlsRef} />
       <VinylPlayer />
       <Light />
       <Interior />
-      <OrbitControls />
+      <OrbitControls ref={controlsRef} />
 
       <VinylBox />
       <VinylDiskOuter />
@@ -45,7 +37,7 @@ const Experience = () => {
         <VinylDiskInner />
         <Cover />
       </Suspense>
-    </Canvas>
+    </>
   );
 };
 
