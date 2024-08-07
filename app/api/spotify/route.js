@@ -31,7 +31,7 @@ async function getRecentlyPlayed(accessToken) {
         Authorization: `Bearer ${accessToken}`,
       },
       params: {
-        limit: 4, // Limit the response to the last played song
+        limit: 8, // Limit the response to the last played song
       },
     },
   );

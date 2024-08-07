@@ -10,6 +10,8 @@ import VinylPlayer from "./VinylPlayer";
 import Cover from "./Cover";
 import VinylBox from "./VinylBox";
 import { VinylDiskInner, VinylDiskOuter } from "./VinylDisk";
+import Screens from "./Screens";
+import ScreensFallback from "./ScreensFallback";
 
 const Experience = () => {
   return (
@@ -32,6 +34,9 @@ const Experience = () => {
       <VinylBox />
       <VinylDiskOuter />
 
+      <Suspense fallback={<ScreensFallback />}>
+        <Screens />
+      </Suspense>
       <Suspense>
         <VinylDiskInner />
         <Cover />

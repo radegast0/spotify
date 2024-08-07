@@ -4,6 +4,7 @@
 // import Image from "next/image";
 // import useApiFetch from "../_hooks/useApiFetch";
 // import useStore from "../store";
+// import useRecentlyPlayed from "../_hooks/useRecentlyPlayed";
 
 // const RecentlyPlayed = () => {
 //   const {
@@ -13,8 +14,11 @@
 //   } = useApiFetch("/api/spotify", 60000);
 //   const setImages = useStore((state) => state.setImages);
 
-//   const images = useStore((state) => state.images);
-//   console.log(images);
+
+
+//   useRecentlyPlayed();
+//   console.log(recentSongs);
+  
 
 //   useEffect(() => {
 //     if (recentSongs) {

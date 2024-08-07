@@ -5,12 +5,11 @@ import GetSongs from "./_hooks/useCurrentSong";
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen">
+    <div className="h-screen w-screen">
       {/* <div className="z-10">
         <RecentlyPlayed />
         <CurrentlyPlaying />
       </div> */}
-      {/* <GetSongs /> */}
       <Experience />
     </div>
   );
