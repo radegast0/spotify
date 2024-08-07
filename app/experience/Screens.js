@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { Outlines, useGLTF, useTexture, Edges } from "@react-three/drei";
+import { Edges, Outlines, useGLTF, useTexture } from "@react-three/drei";
 import useRecentlyPlayed from "../_hooks/useRecentlyPlayed";
 import useStore from "../store";
 
+const TextureLoader = ({ url }) => {
+  const texture = useTexture(url);
+  texture.flipY = false;
+  return <meshBasicMaterial map={texture} />;
+};
+
 export default function Screens(props) {
-  const { nodes, materials } = useGLTF("./models/screens.glb");
+  const { nodes } = useGLTF("./models/screens.glb");
   const [hovered, setHovered] = useState(null);
 
   useRecentlyPlayed();
@@ -22,79 +28,62 @@ export default function Screens(props) {
     images[0] || "/images/default-green.jpg",
   ];
 
-  const textures = imageUrls.map((url) => {
-    const texture = useTexture(url);
-    texture.flipY = false;
-    return texture;
-  });
-
-  const [
-    texture8,
-    texture7,
-    texture6,
-    texture5,
-    texture4,
-    texture3,
-    texture2,
-    texture1,
-  ] = textures;
-
   const meshes = [
     {
       geometry: nodes.screen5.geometry,
       position: [-0.241, 0.693, 1.411],
       rotation: [Math.PI / 2, 0, -1.828],
       scale: [0.308, 0.774, 0.24],
-      texture: texture5,
+      textureUrl: imageUrls[4],
     },
     {
       geometry: nodes.screen1.geometry,
       position: [-1.422, 2.547, 0.839],
       rotation: [Math.PI / 2, 0, -1.267],
       scale: [0.315, 0.71, 0.234],
-      texture: texture1,
+      textureUrl: imageUrls[0],
     },
     {
       geometry: nodes.screen2.geometry,
       position: [-0.869, 2.711, -0.49],
       rotation: [Math.PI / 2, 0, -0.977],
       scale: [0.277, 0.324, 0.23],
-      texture: texture2,
+      textureUrl: imageUrls[1],
     },
     {
       geometry: nodes.screen3.geometry,
       position: [-0.176, 1.633, 0.508],
       rotation: [Math.PI / 2, 0, -1.605],
       scale: [0.311, 0.264, 0.251],
-      texture: texture3,
+      textureUrl: imageUrls[2],
     },
     {
       geometry: nodes.screen4.geometry,
       position: [0.255, 1.785, -1.093],
       rotation: [Math.PI / 2, 0, -0.623],
       scale: [0.311, 0.279, 0.24],
-      texture: texture4,
+      textureUrl: imageUrls[3],
     },
     {
       geometry: nodes.screen6.geometry,
       position: [0.423, 0.587, -0.139],
       rotation: [Math.PI / 2, 0, -0.521],
       scale: [0.251, 0.249, 0.204],
-      texture: texture6,
+      textureUrl: imageUrls[5],
     },
     {
       geometry: nodes.screen7.geometry,
       position: [1.218, 1.151, -0.793],
       rotation: [Math.PI / 2, 0, 0.019],
       scale: [0.312, 0.24, 0.24],
-      texture: texture7,
+      textureUrl: imageUrls[6],
     },
     {
       geometry: nodes.screen8.geometry,
       position: [2.029, 1.432, -0.411],
       rotation: [Math.PI / 2, 0, 0.485],
       scale: [0.279, 0.251, 0.22],
-      texture: texture8,
+      textureUrl: imageUrls[7],
     },
   ];
 
@@ -111,10 +100,10 @@ export default function Screens(props) {
           rotation={meshProps.rotation}
           scale={meshProps.scale}
         >
-          <meshBasicMaterial map={meshProps.texture} />
+          <TextureLoader url={meshProps.textureUrl} />
           {hovered === index && (
-            <Edges scale={1.1}>
-              <Outlines color="white" thickness={0.03} angle={45} />
+            <Edges scale={2}>
+              <Outlines color="white" thickness={2} angle={0} />
             </Edges>
           )}
         </mesh>
