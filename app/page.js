@@ -1,19 +1,15 @@
-import RecentlyPlayed from "./_components/RecentlyPlayed";
-import CurrentlyPlaying from "./_components/CurrentlyPlaying";
 import Experience from "./experience/Experience";
-import GetSongs from "./_hooks/useCurrentSong";
-import CanvasTest from "./experience/CanvasTest";
-import RecentSongsInfo from "./_components/RecentSongsInfo";
+import Overlay from "./html/Overlay";
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen">
+    <div className="h-dvh w-dvw">
       {/* <div className="z-10">
         <RecentlyPlayed />
         <CurrentlyPlaying />
       </div> */}
-      <RecentSongsInfo />
-      <CanvasTest />
+      <Overlay />
+      <Experience />
     </div>
   );
 }

@@ -1,43 +1,22 @@
 "use client";
+import React, { Suspense, useEffect, useRef } from "react";
 import { Environment, OrbitControls } from "@react-three/drei";
-import React, { Suspense, useRef } from "react";
-import Computers from "./Computers";
-import VinylPlayer from "./VinylPlayer";
-import Light from "./Light";
-import Interior from "./Interior";
-import VinylBox from "./VinylBox";
-import { VinylDiskInner, VinylDiskOuter } from "./VinylDisk";
-import ScreensFallback from "./ScreensFallback";
-import Screens from "./Screens";
-import Cover from "./Cover";
-import { useThree } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
+import Scene from "./Scene";
 
 const Experience = () => {
-  const { camera } = useThree();
-  const controlsRef = useRef();
-  // console.log(camera?.position);
-  // console.log("target:", controlsRef?.current?.target);
-
   return (
-    <>
-      <Environment preset="warehouse" environmentIntensity={0.3} />
-      <Computers controlsRef={controlsRef} />
-      <VinylPlayer />
-      <Light />
-      <Interior />
-      <OrbitControls ref={controlsRef} />
-
-      <VinylBox />
-      <VinylDiskOuter />
-
-      <Suspense fallback={<ScreensFallback />}>
-        <Screens />
-      </Suspense>
-      <Suspense>
-        <VinylDiskInner />
-        <Cover />
-      </Suspense>
-    </>
+    <Canvas
+      camera={{
+        position: [2, 3, 8],
+        fov: 75,
+        near: 0.1,
+        far: 1000,
+      }}
+      shadows
+    >
+      <Scene />
+    </Canvas>
   );
 };
 

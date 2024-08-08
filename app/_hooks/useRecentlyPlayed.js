@@ -13,9 +13,10 @@ const useRecentlyPlayed = () => {
         (song) => song.track.album.images[1].url,
       );
       setImages(images);
-      const songs = recentSongs.recentlyPlayed.map((song) => song.track);
+      const songs = recentSongs.recentlyPlayed.map((song) => song);
       setSongs(songs);
-      // console.log(songs);
+
+      console.log('songs:',songs);
     }
   }, [recentSongs, setImages]);
 };

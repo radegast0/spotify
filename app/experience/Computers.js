@@ -59,11 +59,6 @@ export default function Computers({ controlsRef, ...props }) {
       moveCamera(cameraConfig.position, cameraConfig.target);
       setMonitorIndex(cameraConfig.index);
     }
-    console.log(monitorIndex);
-
-    // setMonitorIndex(index - 1);
-    // console.log("Raw index from click:", index);
-    // console.log("monitor index:", monitorIndex);
   };
 
   return (
