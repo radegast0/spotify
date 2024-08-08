@@ -5,6 +5,8 @@ import useStore from "../store";
 const RecentSongsInfo = () => {
   const songs = useStore((state) => state.songs);
   const monitorIndex = useStore((state) => state.monitorIndex);
+  console.log(songs);
+  
 
   useEffect(() => {
     if (monitorIndex !== null && songs[monitorIndex]) {

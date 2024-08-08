@@ -11,7 +11,6 @@ const TextureLoader = ({ url }) => {
 
 export default function Screens(props) {
   const { nodes } = useGLTF("./models/screens.glb");
-  const [hovered, setHovered] = useState(null);
 
   useRecentlyPlayed();
   const images = useStore((state) => state.images);
@@ -29,41 +28,43 @@ export default function Screens(props) {
   ];
 
   const meshes = [
-    {
-      geometry: nodes.screen5.geometry,
-      position: [-0.241, 0.693, 1.411],
-      rotation: [Math.PI / 2, 0, -1.828],
-      scale: [0.308, 0.774, 0.24],
-      textureUrl: imageUrls[0],
-    },
+    
     {
       geometry: nodes.screen1.geometry,
       position: [-1.422, 2.547, 0.839],
       rotation: [Math.PI / 2, 0, -1.267],
       scale: [0.315, 0.71, 0.234],
-      textureUrl: imageUrls[1],
+      textureUrl: imageUrls[0],
     },
     {
       geometry: nodes.screen2.geometry,
       position: [-0.869, 2.711, -0.49],
       rotation: [Math.PI / 2, 0, -0.977],
       scale: [0.277, 0.324, 0.23],
-      textureUrl: imageUrls[2],
+      textureUrl: imageUrls[1],
     },
     {
       geometry: nodes.screen3.geometry,
       position: [-0.176, 1.633, 0.508],
       rotation: [Math.PI / 2, 0, -1.605],
       scale: [0.311, 0.264, 0.251],
-      textureUrl: imageUrls[3],
+      textureUrl: imageUrls[2],
     },
     {
       geometry: nodes.screen4.geometry,
       position: [0.255, 1.785, -1.093],
       rotation: [Math.PI / 2, 0, -0.623],
       scale: [0.311, 0.279, 0.24],
+      textureUrl: imageUrls[3],
+    },
+    {
+      geometry: nodes.screen5.geometry,
+      position: [-0.241, 0.693, 1.411],
+      rotation: [Math.PI / 2, 0, -1.828],
+      scale: [0.308, 0.774, 0.24],
       textureUrl: imageUrls[4],
     },
+    
     {
       geometry: nodes.screen6.geometry,
       position: [0.423, 0.587, -0.139],
@@ -91,7 +92,6 @@ export default function Screens(props) {
     <group {...props} dispose={null}>
       {meshes.map((meshProps, index) => (
         <mesh
-          onPointerEnter={() => setHovered(index)}
           key={index}
           castShadow
           receiveShadow
