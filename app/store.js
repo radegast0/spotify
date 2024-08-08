@@ -6,7 +6,7 @@ const useStore = create((set) => ({
   currentImageHigh: null,
   songs: [],
   currentSong: null,
-  montiorIndex: null,
+  monitorIndex: null,
   setImages: (images) => set({ images }),
   setCurrentImageLow: (imageUrl) => set({ currentImageLow: imageUrl }),
   setCurrentImageHigh: (imageUrl) => set({ currentImageHigh: imageUrl }),

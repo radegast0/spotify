@@ -8,12 +8,11 @@ const Experience = () => {
   return (
     <Canvas
       camera={{
-        position: [2, 3, 8],
+        position: [0,0,0],
         fov: 75,
         near: 0.1,
         far: 1000,
       }}
-      shadows
     >
       <Scene />
     </Canvas>
