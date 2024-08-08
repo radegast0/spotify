@@ -16,7 +16,7 @@ const Experience = () => {
   const { camera } = useThree();
   const controlsRef = useRef();
   // console.log(camera?.position);
-  console.log("target:", controlsRef?.current?.target);
+  // console.log("target:", controlsRef?.current?.target);
 
   return (
     <>
