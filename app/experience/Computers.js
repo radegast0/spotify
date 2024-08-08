@@ -3,6 +3,11 @@ import { Outlines, useGLTF } from "@react-three/drei";
 import useCameraRig from "../_hooks/useCameraRig";
 import useStore from "../store";
 
+const initialCameraPosition = {
+  position: { x: 4.2, y: 2.4, z: 1.97 },
+  target: { x: -0.01, y: 0.4, z: -0.53 },
+};
+
 const cameraPositions = [
   {
     position: { x: 1.5, y: 1.46, z: 0.51 },
@@ -52,6 +57,12 @@ export default function Computers({ controlsRef, ...props }) {
   const moveCamera = useCameraRig(controlsRef);
   const setMonitorIndex = useStore((state) => state.setMonitorIndex);
   const monitorIndex = useStore((state) => state.monitorIndex);
+
+  useEffect(() => {
+    if (monitorIndex === null) {
+      moveCamera(initialCameraPosition.position, initialCameraPosition.target);
+    }
+  }, [monitorIndex]);
 
   const handleClick = (index) => {
     const cameraConfig = cameraPositions[index];

@@ -15,7 +15,6 @@ const RecentSongsInfo = () => {
 //       console.log("Title:", selectedSong.name);
 //       console.log("Artist:", selectedSong.artists.map((artist) => artist.name).join(", "));
 //       console.log("Album:", selectedSong.album.name);
-//       console.log("Album Cover:", selectedSong.album.images[1].url);
 //     } else {
 //       console.log("No song selected");
 //     }

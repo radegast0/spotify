@@ -13,10 +13,12 @@
     "@react-three/fiber": "^8.16.8",
     "@types/three": "^0.166.0",
     "axios": "^1.7.2",
+    "date-fns": "^3.6.0",
     "gsap": "^3.12.5",
     "next": "^14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.2.1",
     "three": "^0.166.1",
     "zustand": "^4.5.4"
   },

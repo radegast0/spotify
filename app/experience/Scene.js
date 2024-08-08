@@ -10,13 +10,9 @@ import { VinylDiskInner, VinylDiskOuter } from "./VinylDisk";
 import ScreensFallback from "./ScreensFallback";
 import Screens from "./Screens";
 import Cover from "./Cover";
-import { useThree } from "@react-three/fiber";
 
 const Scene = () => {
-  const { camera } = useThree();
   const controlsRef = useRef();
-  // console.log(camera?.position);
-  // console.log("target:", controlsRef?.current?.target);
 
   return (
     <>
@@ -25,7 +21,7 @@ const Scene = () => {
       <VinylPlayer />
       <Light />
       <Interior />
-      <OrbitControls ref={controlsRef} />
+      <OrbitControls enableZoom={false} dampingFactor={0} ref={controlsRef} />
 
       <VinylBox />
       <VinylDiskOuter />
