@@ -15,8 +15,7 @@ const useRecentlyPlayed = () => {
       setImages(images);
       const songs = recentSongs.recentlyPlayed.map((song) => song);
       setSongs(songs);
-
-      console.log('songs:',songs);
+      // console.log('songs:',songs);
     }
   }, [recentSongs, setImages]);
 };

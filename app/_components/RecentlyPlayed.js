@@ -17,7 +17,7 @@ const RecentlyPlayed = () => {
 
 
   useRecentlyPlayed();
-  console.log(recentSongs);
+  // console.log(recentSongs);
   
 
   useEffect(() => {
