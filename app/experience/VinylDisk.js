@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Outlines, useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import { Outlines, useGLTF, useTexture } from "@react-three/drei";
+
 import useStore from "../store";
 import useCameraRig from "../_hooks/useCameraRig";
 import {
@@ -12,11 +13,15 @@ export function VinylDisk({ controlsRef, ...props }) {
   const { nodes, materials } = useGLTF("./models/vinyl-disk.glb");
   const currentImage = useStore((state) => state.currentImageLow);
   const texture = useTexture(currentImage || "/images/default.jpeg");
+
   const vinylDiskInner = useRef();
   const vinylDiskOuter = useRef();
+
   const isVinylSelected = useStore((state) => state.isVinylSelected);
-  const moveCamera = useCameraRig(controlsRef);
   const setIsVinylSelected = useStore((state) => state.setIsVinylSelected);
+
+  const moveCamera = useCameraRig(controlsRef);
+
   const [hovered, setHovered] = useState(false);
 
   useFrame((state, delta) => {
@@ -57,12 +62,9 @@ export function VinylDisk({ controlsRef, ...props }) {
         <meshBasicMaterial map={texture} />
       </mesh>
       <mesh
-        onClick={handleClick}
         ref={vinylDiskOuter}
         castShadow
         receiveShadow
-        onPointerEnter={() => setHovered(true)}
-        onPointerLeave={() => setHovered(false)}
         geometry={
           nodes["#REC0002_33_Highway_To_Hell_#REC0002_Textures_0"].geometry
         }
@@ -70,6 +72,9 @@ export function VinylDisk({ controlsRef, ...props }) {
         position={[1.224, 0.306, 1.135]}
         rotation={[-1.571, 0, 0]}
         scale={2.462}
+        onClick={handleClick}
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
       >
         {hovered && <Outlines thickness={0.005} angle={10} color={"white"} />}
       </mesh>

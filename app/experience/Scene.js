@@ -85,8 +85,8 @@ const Scene = () => {
       <Light />
       <Interior />
       <OrbitControls
-        // enableZoom={false}
-        //  dampingFactor={0}
+        enableZoom={false}
+         dampingFactor={0}
         ref={controlsRef}
       />
       <VinylBox controlsRef={controlsRef} />

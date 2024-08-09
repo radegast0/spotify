@@ -20,7 +20,7 @@
 //   return (
 //     <div className={`${className} h-[6px]`} {...props}>
 //       <div
-//         className="duration-2000 h-full rounded-r-full bg-red-500 transition-all ease-linear"
+//         className="duration-2000 h-full rounded-full bg-red-500 transition-all ease-linear"
 //         style={{ width: `${percentage}%` }}
 //       ></div>
 //     </div>
