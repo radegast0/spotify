@@ -40,24 +40,24 @@ const Scene = () => {
   }, [controlsRef]);
 
   const handleMouseMove = (event) => {
-    // if (!monitorIndex) {
-    //   const x = (event.clientX / window.innerWidth) * 2 - 1;
-    //   const y = -(event.clientY / window.innerHeight) * 2 + 1;
+    if (!monitorIndex) {
+      const x = (event.clientX / window.innerWidth) * 2 - 1;
+      const y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    //   if (
-    //     Math.abs(x - prevX.current) > 0.01 ||
-    //     Math.abs(y - prevY.current) > 0.01
-    //   ) {
-    //     prevX.current = x;
-    //     prevY.current = y;
-    //     gsap.to(controlsRef.current.target, {
-    //       x: x * 0.3,
-    //       y: y * 0.3,
-    //       ease: "power2.out",
-    //       duration: 0.5,
-    //     });
-    //   }
-    // }
+      if (
+        Math.abs(x - prevX.current) > 0.01 ||
+        Math.abs(y - prevY.current) > 0.01
+      ) {
+        prevX.current = x;
+        prevY.current = y;
+        gsap.to(controlsRef.current.target, {
+          x: x * 0.3,
+          y: y * 0.3,
+          ease: "power2.out",
+          duration: 0.5,
+        });
+      }
+    }
   };
 
   useEffect(() => {
@@ -83,11 +83,7 @@ const Scene = () => {
       <VinylPlayer />
       <Light />
       <Walls />
-      <OrbitControls
-        // enableZoom={false}
-        //  dampingFactor={0}
-        ref={controlsRef}
-      />
+      <OrbitControls enableZoom={false} dampingFactor={0} ref={controlsRef} />
       <VinylBox controlsRef={controlsRef} />
       <Suspense fallback={<ScreensFallback />}>
         <Screens />
