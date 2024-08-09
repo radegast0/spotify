@@ -24,7 +24,7 @@ const Scene = () => {
 
   useEffect(() => {
     gsap.to(controlsRef.current.object.position, {
-      duration: 1,
+      duration: 2,
       x: initialCameraPosition.position.x,
       y: initialCameraPosition.position.y,
       z: initialCameraPosition.position.z,
@@ -32,7 +32,7 @@ const Scene = () => {
     });
 
     gsap.to(controlsRef.current.target, {
-      duration: 1,
+      duration: 2,
       x: initialCameraPosition.target.x,
       y: initialCameraPosition.target.y,
       z: initialCameraPosition.target.z,
