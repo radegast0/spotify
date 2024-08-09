@@ -1,10 +1,10 @@
 import { useGLTF, useTexture } from "@react-three/drei";
 import React from "react";
 
-const SceneElements = () => {
+const Walls = () => {
   // Load models
-  const { nodes: wallsNodes } = useGLTF("./models/walls3.glb");
-  const { nodes: groundNodes } = useGLTF("./models/ground.glb");
+  const { nodes: wallsNodes } = useGLTF("./models/walls3.glb", true); // Preload the GLTF
+  const { nodes: groundNodes } = useGLTF("./models/ground.glb", true); // Preload the GLTF
 
   // Load textures
   const wallsTexture = useTexture("./textures/walls-baked-3.jpg");
@@ -30,4 +30,4 @@ const SceneElements = () => {
   );
 };
 
-export default SceneElements;
+export default Walls;
