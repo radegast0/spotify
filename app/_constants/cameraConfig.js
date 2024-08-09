@@ -3,6 +3,13 @@ const initialCameraPosition = {
   target: { x: -0.01, y: 0.4, z: -0.53 },
 };
 
+const vinylPosition = [
+  {
+    position: { x: 2.36, y: 1.19, z: 1.277 },
+    target: { x: 1.82, y: 0.4, z: 1.1971 },
+  },
+];
+
 const cameraPositions = [
   {
     position: { x: 1.5, y: 1.46, z: 0.51 },
@@ -46,4 +53,4 @@ const cameraPositions = [
   },
 ];
 
-export { initialCameraPosition, cameraPositions };
+export { initialCameraPosition, cameraPositions, vinylPosition };

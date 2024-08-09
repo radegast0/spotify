@@ -5,13 +5,15 @@ const useStore = create((set) => ({
   currentImageLow: null,
   currentImageHigh: null,
   songs: [],
-  currentSong: null,
+  currentSongData: null,
   monitorIndex: null,
+  isVinylSelected: false,
+  setIsVinylSelected: (isVinylSelected) => set({ isVinylSelected }),
   setImages: (images) => set({ images }),
   setCurrentImageLow: (imageUrl) => set({ currentImageLow: imageUrl }),
   setCurrentImageHigh: (imageUrl) => set({ currentImageHigh: imageUrl }),
   setSongs: (songs) => set({ songs }),
-  setCurrentSong: (song) => set({ currentSong: song }),
+  setCurrentSongData: (song) => set({ currentSongData: song }),
   setMonitorIndex: (index) => set({ monitorIndex: index }),
 }));
 

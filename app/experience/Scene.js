@@ -8,7 +8,7 @@ import VinylPlayer from "./VinylPlayer";
 import Light from "./Light";
 import Interior from "./Interior";
 import VinylBox from "./VinylBox";
-import { VinylDiskInner, VinylDiskOuter } from "./VinylDisk";
+import VinylDisk from "./VinylDisk";
 import ScreensFallback from "./ScreensFallback";
 import Screens from "./Screens";
 import Cover from "./Cover";
@@ -17,8 +17,8 @@ import useStore from "../store";
 
 const Scene = () => {
   const controlsRef = useRef();
-  const [isMoving, setIsMoving] = useState(false);
   const monitorIndex = useStore((state) => state.monitorIndex);
+  const isVinylSelected = useStore((state) => state.isVinylSelected);
   const prevX = useRef(0);
   const prevY = useRef(0);
 
@@ -29,8 +29,6 @@ const Scene = () => {
       y: initialCameraPosition.position.y,
       z: initialCameraPosition.position.z,
       ease: "power2.inOut",
-      onStart: () => setIsMoving(true),
-      onComplete: () => setIsMoving(false),
     });
 
     gsap.to(controlsRef.current.target, {
@@ -39,13 +37,11 @@ const Scene = () => {
       y: initialCameraPosition.target.y,
       z: initialCameraPosition.target.z,
       ease: "power2.inOut",
-      onStart: () => setIsMoving(true),
-      onComplete: () => setIsMoving(false),
     });
   }, [controlsRef]);
 
   const handleMouseMove = (event) => {
-    if (!monitorIndex && !isMoving) {
+    if (!monitorIndex) {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
 
@@ -67,7 +63,7 @@ const Scene = () => {
 
   useEffect(() => {
     let timeout;
-    if (monitorIndex === null) {
+    if (monitorIndex === null && !isVinylSelected) {
       timeout = setTimeout(() => {
         window.addEventListener("mousemove", handleMouseMove);
       }, 1000);
@@ -79,7 +75,7 @@ const Scene = () => {
       clearTimeout(timeout);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [monitorIndex]);
+  }, [monitorIndex, isVinylSelected]);
 
   return (
     <>
@@ -88,14 +84,18 @@ const Scene = () => {
       <VinylPlayer />
       <Light />
       <Interior />
-      <OrbitControls enableZoom={false} dampingFactor={0} ref={controlsRef} />
-      <VinylBox />
-      <VinylDiskOuter />
+      <OrbitControls
+        // enableZoom={false}
+        //  dampingFactor={0}
+        ref={controlsRef}
+      />
+      <VinylBox controlsRef={controlsRef} />
+      {/* <VinylDiskOuter /> */}
       <Suspense fallback={<ScreensFallback />}>
         <Screens />
       </Suspense>
       <Suspense>
-        <VinylDiskInner />
+        <VinylDisk controlsRef={controlsRef} />
         <Cover />
       </Suspense>
     </>

@@ -1,12 +1,12 @@
 import React from "react";
 import RecentSongsInfo from "./RecentSongsInfo";
-import Test from "./Test";
+import CurrentSongInfo from "./CurrentSongInfo";
 
 const Overlay = () => {
   return (
     <div>
       <RecentSongsInfo />
-      <Test />
+      <CurrentSongInfo />
     </div>
   );
 };

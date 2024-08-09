@@ -4,16 +4,25 @@ import useApiFetch from "../_hooks/useApiFetch";
 import useStore from "../store";
 
 const useCurrentSong = () => {
-  const { data: currentSongData } = useApiFetch("/api/spotify", 2000);
+  const { data: currentSong } = useApiFetch("/api/spotify", 2000);
+  const setCurrentSongData = useStore((state) => state.setCurrentSongData);
   const setCurrentImageHigh = useStore((state) => state.setCurrentImageHigh);
   const setCurrentImageLow = useStore((state) => state.setCurrentImageLow);
 
   useEffect(() => {
-    if (currentSongData && currentSongData.currentlyPlaying) {
-      setCurrentImageHigh(currentSongData.currentlyPlaying.album.images[0].url);
-      setCurrentImageLow(currentSongData.currentlyPlaying.album.images[1].url);
+    if (currentSong && currentSong.currentlyPlaying) {
+      setCurrentImageHigh(currentSong.currentlyPlaying.album.images[0].url);
+      setCurrentImageLow(currentSong.currentlyPlaying.album.images[1].url);
+      setCurrentSongData(currentSong);
+      // console.log("currentSongData:", currentSongData);
+      // console.log("currentSongData:", currentSongData.progressData.progress_ms);
     }
-  }, [currentSongData, setCurrentImageHigh, setCurrentImageLow]);
+  }, [
+    currentSong,
+    setCurrentImageHigh,
+    setCurrentImageLow,
+    setCurrentSongData,
+  ]);
 };
 
 export default useCurrentSong;
