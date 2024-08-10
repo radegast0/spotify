@@ -10,6 +10,8 @@ const vinylPosition = [
   },
 ];
 
+// mobile adjustments
+
 const cameraPositions = [
   {
     position: { x: 1.5, y: 1.46, z: 0.51 },
