@@ -88,7 +88,7 @@ const Scene = () => {
       <Suspense fallback={<ScreensFallback />}>
         <Screens />
       </Suspense>
-      <Suspense>
+      <Suspense fallback={null}>
         <VinylDisk controlsRef={controlsRef} />
         <Cover />
       </Suspense>

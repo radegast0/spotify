@@ -10,7 +10,7 @@ const vinylPosition = [
   },
 ];
 
-// mobile adjustments
+// mobile adjustments later
 
 const cameraPositions = [
   {
@@ -34,7 +34,7 @@ const cameraPositions = [
     index: 2,
   },
   {
-    position: { x: 0.72, y: 1.9, z: -0.47 },
+    position: { x: 0.72, y: 1.9, z: -0.2 },
     target: { x: 0.102, y: 1.6, z: -1.311 },
     index: 3,
   },

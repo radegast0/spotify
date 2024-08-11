@@ -5,16 +5,18 @@ import Scene from "./Scene";
 
 const Experience = () => {
   return (
-    <Canvas
-      camera={{
-        position: [-6, 0.5, 6],
-        fov: 75,
-        near: 0.1,
-        far: 1000,
-      }}
-    >
-      <Scene />
-    </Canvas>
+    <>
+      <Canvas
+        camera={{
+          position: [-6, 0.5, 6],
+          fov: 75,
+          near: 0.1,
+          far: 1000,
+        }}
+      >
+        <Scene />
+      </Canvas>
+    </>
   );
 };
 
