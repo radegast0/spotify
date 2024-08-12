@@ -28,7 +28,7 @@ const useCameraRig = (controlsRef) => {
         duration,
         ease,
         onUpdate: () => {
-          controlsRef.current.update();
+          controlsRef?.current?.update();
         },
       });
     }

@@ -1,33 +1,33 @@
 "use client";
 import Link from "next/link";
-import React, { act, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import gsap from "gsap";
 import useStore from "../store";
-import { useProgress } from "@react-three/drei";
 
 const Links = () => {
   const link1Ref = useRef(null);
   const link2Ref = useRef(null);
   const monitorIndex = useStore((state) => state.monitorIndex);
   const isVinylSelected = useStore((state) => state.isVinylSelected);
-  const { active, progress } = useProgress();
+  
+
+  // console.log("monitorIndex", monitorIndex);
+  // console.log("isVinylSelected", isVinylSelected);
 
   useEffect(() => {
-    if (!active && progress === 100) {
-      if (link1Ref.current && link2Ref.current) {
-        gsap.set([link1Ref.current, link2Ref.current], { x: -200, opacity: 0 }); // set initial position
-        gsap.to([link1Ref.current, link2Ref.current], {
-          x: 0,
-          opacity: 1,
-          delay: 0.5,
-          duration: 2,
-          ease: "power3.inOut",
-          stagger: 0.5,
-        });
-      }
+    if (link1Ref.current && link2Ref.current) {
+      gsap.set([link1Ref.current, link2Ref.current], { x: -200, opacity: 0 }); // set initial position
+      gsap.to([link1Ref.current, link2Ref.current], {
+        x: 0,
+        opacity: 1,
+        delay: 3,
+        duration: 2,
+        ease: "power3.inOut",
+        stagger: 0.25,
+      });
     }
-  }, [link1Ref, link2Ref, active, progress]);
+  }, [link1Ref, link2Ref]);
 
   return (
     !monitorIndex &&
