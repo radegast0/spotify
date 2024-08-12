@@ -31,14 +31,16 @@ const CurrentSongInfo = () => {
       <div className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/20 p-6 shadow-lg">
         {currentSongData ? (
           <>
-            <h1 className="mb-2">Currently Playing</h1>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="truncate text-3xl font-bold">
+            <div className="flex items-center justify-between">
+              <h1 className="mb-2">Currently Playing</h1>
+              <button className="text-2xl font-bold" onClick={handleClose}>
+                <FaRegWindowClose className="hover:text-red-500" />
+              </button>
+            </div>
+            <div className="mb-4">
+              <h2 className="truncate text-2xl font-bold">
                 {currentSongData.currentlyPlaying.name}
               </h2>
-              <button className="text-2xl font-bold" onClick={handleClose}>
-                <FaRegWindowClose className="hover:text-gray-300" />
-              </button>
             </div>
             <div className="mb-2 truncate text-lg">
               <span className="font-semibold">Artist:</span>{" "}
@@ -47,17 +49,17 @@ const CurrentSongInfo = () => {
                 .join(", ")}
             </div>
 
-            <div className="mb-2 flex items-center">
+            <div className="mb-2 flex">
               <div className="mb-2 flex-1 truncate text-lg">
                 <span className="font-semibold">Album:</span>{" "}
                 {currentSongData.currentlyPlaying.album.name}
               </div>
-              <div className="ml-2 text-xl">
+              <div className="ml-2 mt-1 text-xl">
                 <Link
                   target="_blank"
                   href={currentSongData.currentlyPlaying.external_urls.spotify}
                 >
-                  <FaExternalLinkAlt className="hover:text-gray-300" />
+                  <FaExternalLinkAlt className="hover:text-red-500" />
                 </Link>
               </div>
             </div>

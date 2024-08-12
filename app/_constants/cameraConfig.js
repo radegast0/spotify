@@ -32,7 +32,7 @@ const cameraPositions = [
     index: 1,
   },
   {
-    position: { x: 0.98, y: 1.81, z: 0.34 },
+    position: { x: 0.98, y: 1.81, z: 0.44 },
     target: { x: -1.39, y: 1.07, z: 0.61 },
     index: 2,
   },

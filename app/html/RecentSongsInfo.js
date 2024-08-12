@@ -31,7 +31,7 @@ const RecentSongsInfo = () => {
       {selectedSong && (
         <div className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/10 p-6 shadow-lg">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="truncate text-3xl font-bold">
+            <h2 className="truncate text-2xl font-bold">
               {selectedSong.track.name}
             </h2>
             <button className="text-2xl font-bold" onClick={closeSongInfo}>
@@ -45,7 +45,7 @@ const RecentSongsInfo = () => {
             <span className="font-semibold">Album:</span>{" "}
             {selectedSong.track.album.name}
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="flex-1 text-lg">
               <span>Played</span> {formatDate(selectedSong.played_at)}
             </div>

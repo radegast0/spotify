@@ -6,6 +6,7 @@ import useStore from "../store";
 import useCameraRig from "../_hooks/useCameraRig";
 import {
   initialCameraPosition,
+  mobileCameraPosition,
   vinylPosition,
 } from "../_constants/cameraConfig";
 
@@ -37,7 +38,11 @@ export function VinylDisk({ controlsRef, ...props }) {
 
   useEffect(() => {
     if (!isVinylSelected) {
-      moveCamera(initialCameraPosition.position, initialCameraPosition.target);
+      const isMobile = window.innerWidth < 768;
+      const cameraConfig = isMobile
+        ? mobileCameraPosition
+        : initialCameraPosition;
+      moveCamera(cameraConfig.position, cameraConfig.target);
     }
   }, [isVinylSelected]);
 
