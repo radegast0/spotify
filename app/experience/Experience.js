@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Scene";
 import { Loader } from "@react-three/drei";
@@ -7,16 +7,18 @@ import { Loader } from "@react-three/drei";
 const Experience = () => {
   return (
     <>
-      <Canvas
-        camera={{
-          position: [-6, 0.5, 6],
-          fov: 75,
-          near: 0.1,
-          far: 100,
-        }}
-      >
-        <Scene />
-      </Canvas>
+      <Suspense>
+        <Canvas
+          camera={{
+            position: [-6, 0.5, 6],
+            fov: 75,
+            near: 0.1,
+            far: 100,
+          }}
+        >
+          <Scene />
+        </Canvas>
+      </Suspense>
       <Loader />
     </>
   );

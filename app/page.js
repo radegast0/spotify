@@ -1,7 +1,11 @@
+"use client";
 import dynamic from "next/dynamic";
-import Overlay from "./html/Overlay";
 
 const Experience = dynamic(() => import("./experience/Experience"), {
+  ssr: false,
+});
+
+const Overlay = dynamic(() => import("./html/Overlay"), {
   ssr: false,
 });
 
