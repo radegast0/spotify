@@ -17,7 +17,6 @@ const Experience = () => {
       >
         <Scene />
       </Canvas>
-      <Loader />
     </>
   );
 };
