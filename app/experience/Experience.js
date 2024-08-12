@@ -7,7 +7,7 @@ import { Loader } from "@react-three/drei";
 const Experience = () => {
   return (
     <>
-      <Suspense>
+      <Suspense fallback={null}>
         <Canvas
           camera={{
             position: [-6, 0.5, 6],
