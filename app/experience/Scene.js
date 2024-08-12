@@ -10,9 +10,12 @@ import VinylDisk from "./VinylDisk";
 import ScreensFallback from "./ScreensFallback";
 import Screens from "./Screens";
 import Cover from "./Cover";
-import { initialCameraPosition } from "../_constants/cameraConfig";
 import useStore from "../store";
 import Walls from "./Walls";
+import {
+  initialCameraPosition,
+  mobileCameraPosition,
+} from "../_constants/cameraConfig";
 
 const Scene = () => {
   const controlsRef = useRef();
@@ -22,21 +25,35 @@ const Scene = () => {
   const prevY = useRef(0);
 
   useEffect(() => {
-    gsap.to(controlsRef.current.object.position, {
-      duration: 2,
-      x: initialCameraPosition.position.x,
-      y: initialCameraPosition.position.y,
-      z: initialCameraPosition.position.z,
-      ease: "power2.inOut",
-    });
+    const updateCameraPosition = () => {
+      const isMobile = window.innerWidth < 768;
+      const cameraPosition = isMobile
+        ? mobileCameraPosition
+        : initialCameraPosition;
 
-    gsap.to(controlsRef.current.target, {
-      duration: 2,
-      x: initialCameraPosition.target.x,
-      y: initialCameraPosition.target.y,
-      z: initialCameraPosition.target.z,
-      ease: "power2.inOut",
-    });
+      gsap.to(controlsRef.current.object.position, {
+        duration: 2,
+        x: cameraPosition.position.x,
+        y: cameraPosition.position.y,
+        z: cameraPosition.position.z,
+        ease: "power2.inOut",
+      });
+
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: cameraPosition.target.x,
+        y: cameraPosition.target.y,
+        z: cameraPosition.target.z,
+        ease: "power2.inOut",
+      });
+    };
+
+    updateCameraPosition();
+    window.addEventListener("resize", updateCameraPosition);
+
+    return () => {
+      window.removeEventListener("resize", updateCameraPosition);
+    };
   }, [controlsRef]);
 
   const handleMouseMove = (event) => {

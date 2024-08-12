@@ -29,9 +29,10 @@ const Links = () => {
   }, [link1Ref, link2Ref]);
 
   return (
-    (!monitorIndex && !isVinylSelected) && (
+    !monitorIndex &&
+    !isVinylSelected && (
       <div className="absolute bottom-2 left-2 z-10 md:bottom-10 md:left-10">
-        <div className="flex flex-col gap-1 text-base md:gap-4 md:text-lg">
+        <div className="flex flex-col gap-2 text-base font-semibold md:gap-1 md:text-lg">
           <Link
             ref={link1Ref}
             target="_blank"

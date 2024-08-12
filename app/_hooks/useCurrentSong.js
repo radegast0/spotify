@@ -4,7 +4,7 @@ import useApiFetch from "../_hooks/useApiFetch";
 import useStore from "../store";
 
 const useCurrentSong = () => {
-  const { data: currentSong } = useApiFetch("/api/spotify", 2000);
+  const { data: currentSong } = useApiFetch("/api/spotify", 4000);
   const setCurrentSongData = useStore((state) => state.setCurrentSongData);
   const setCurrentImageHigh = useStore((state) => state.setCurrentImageHigh);
   const setCurrentImageLow = useStore((state) => state.setCurrentImageLow);

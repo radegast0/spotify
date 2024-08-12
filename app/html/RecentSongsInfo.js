@@ -38,8 +38,7 @@ const RecentSongsInfo = () => {
               <FaRegWindowClose className="hover:text-gray-300" />
             </button>
           </div>
-          <div className="mb-2 truncate text-lg">
-            <span className="font-semibold">Artist:</span>{" "}
+          <div className="mb-2 truncate text-lg font-semibold">
             {selectedSong.track.artists.map((artist) => artist.name).join(", ")}
           </div>
           <div className="mb-2 truncate text-lg">
@@ -48,8 +47,7 @@ const RecentSongsInfo = () => {
           </div>
           <div className="flex">
             <div className="flex-1 text-lg">
-              <span className="font-semibold">Played At:</span>{" "}
-              {formatDate(selectedSong.played_at)}
+              <span>Played</span> {formatDate(selectedSong.played_at)}
             </div>
             <div className="text-xl">
               <Link

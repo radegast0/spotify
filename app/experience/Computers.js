@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Outlines, useGLTF } from "@react-three/drei";
 import useCameraRig from "../_hooks/useCameraRig";
 import useStore from "../store";
-import { cameraPositions, initialCameraPosition } from "../_constants/cameraConfig";
-
-
+import {
+  cameraPositions,
+  initialCameraPosition,
+  mobileCameraPosition,
+} from "../_constants/cameraConfig";
 
 export default function Computers({ controlsRef, ...props }) {
   const { nodes, materials } = useGLTF("./models/computers.glb");
@@ -15,7 +17,15 @@ export default function Computers({ controlsRef, ...props }) {
 
   useEffect(() => {
     if (monitorIndex === null) {
-      moveCamera(initialCameraPosition.position, initialCameraPosition.target);
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        moveCamera(mobileCameraPosition.position, mobileCameraPosition.target);
+      } else {
+        moveCamera(
+          initialCameraPosition.position,
+          initialCameraPosition.target,
+        );
+      }
     }
   }, [monitorIndex]);
 

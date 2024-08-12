@@ -3,6 +3,11 @@ const initialCameraPosition = {
   target: { x: -0.01, y: 0.4, z: -0.53 },
 };
 
+const mobileCameraPosition = {
+  position: { x: 5.2, y: 2.8, z: 2.97 },
+  target: { x: -0.5, y: 0.4, z: -0.53 },
+};
+
 const vinylPosition = [
   {
     position: { x: 2.36, y: 1.19, z: 1.277 },
@@ -29,7 +34,7 @@ const cameraPositions = [
     index: 1,
   },
   {
-    position: { x: 0.58, y: 1.81, z: 0.44 },
+    position: { x: 0.98, y: 1.81, z: 0.34 },
     target: { x: -1.39, y: 1.07, z: 0.61 },
     index: 2,
   },
@@ -55,4 +60,9 @@ const cameraPositions = [
   },
 ];
 
-export { initialCameraPosition, cameraPositions, vinylPosition };
+export {
+  initialCameraPosition,
+  cameraPositions,
+  vinylPosition,
+  mobileCameraPosition,
+};

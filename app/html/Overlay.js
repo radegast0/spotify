@@ -5,7 +5,7 @@ import Links from "./Links";
 
 const Overlay = () => {
   return (
-    <div>
+    <div className="text-white">
       <RecentSongsInfo />
       <CurrentSongInfo />
       <Links />
