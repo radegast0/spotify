@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { act, useEffect, useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import gsap from "gsap";
 import useStore from "../store";

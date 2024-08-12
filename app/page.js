@@ -11,13 +11,11 @@ const Experience = dynamic(() => import("./experience/Experience"), {
 export default function Home() {
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <div className="h-dvh w-dvw">
-          <Overlay />
-          <Experience />
-        </div>
-      </Suspense>
-      <Loader /> {/* This ensures the loader wraps all content */}
+      <div className="h-dvh w-dvw">
+        <Overlay />
+        <Experience />
+      </div>
+      <Loader />
     </>
   );
 }
