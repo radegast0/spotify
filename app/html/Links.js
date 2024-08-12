@@ -11,8 +11,8 @@ const Links = () => {
   const monitorIndex = useStore((state) => state.monitorIndex);
   const isVinylSelected = useStore((state) => state.isVinylSelected);
 
-  console.log("monitorIndex", monitorIndex);
-  console.log("isVinylSelected", isVinylSelected);
+  // console.log("monitorIndex", monitorIndex);
+  // console.log("isVinylSelected", isVinylSelected);
 
   useEffect(() => {
     if (link1Ref.current && link2Ref.current) {
@@ -30,6 +30,7 @@ const Links = () => {
 
   return (
     !monitorIndex &&
+    monitorIndex !== 0 &&
     !isVinylSelected && (
       <div className="absolute bottom-2 left-2 z-10 md:bottom-10 md:left-10">
         <div className="flex flex-col gap-2 text-base font-semibold md:gap-1 md:text-lg">

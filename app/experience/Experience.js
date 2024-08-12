@@ -11,7 +11,7 @@ const Experience = () => {
           position: [-6, 0.5, 6],
           fov: 75,
           near: 0.1,
-          far: 1000,
+          far: 100,
         }}
       >
         <Scene />
