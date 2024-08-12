@@ -2,6 +2,7 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Scene";
+import { Loader } from "@react-three/drei";
 
 const Experience = () => {
   return (
@@ -16,6 +17,7 @@ const Experience = () => {
       >
         <Scene />
       </Canvas>
+      <Loader />
     </>
   );
 };

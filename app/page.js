@@ -1,5 +1,9 @@
-import Experience from "./experience/Experience";
+import dynamic from "next/dynamic";
 import Overlay from "./html/Overlay";
+
+const Experience = dynamic(() => import("./experience/Experience"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
