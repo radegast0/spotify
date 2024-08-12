@@ -1,3 +1,10 @@
+/*
+Author: Rafael Rodrigues (https://sketchfab.com/RafaelBR873D)
+License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+Source: https://sketchfab.com/3d-models/old-computers-7bb6e720499a467b8e0427451d180063
+Title: Old Computers
+*/
+
 import React, { useEffect, useState } from "react";
 import { Outlines, useGLTF } from "@react-three/drei";
 import useCameraRig from "../_hooks/useCameraRig";

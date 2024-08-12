@@ -8,9 +8,9 @@ const ProgressBar = ({ progressMs, durationMs }) => {
   const percentage = progressMs ? (progressMs / durationMs) * 100 : 0;
 
   return (
-    <div className="h-[6px] w-full rounded-full bg-white">
+    <div className="h-[6px] w-full rounded-r-full bg-white">
       <div
-        className="h-full bg-red-800 transition-all duration-4000 ease-linear"
+        className="h-full bg-red-500 transition-all duration-4000 ease-linear"
         style={{ width: `${percentage}%` }}
       ></div>
     </div>
@@ -31,6 +31,7 @@ const CurrentSongInfo = () => {
       <div className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/20 p-6 shadow-lg">
         {currentSongData ? (
           <>
+            <h1 className="mb-2">Currently Playing</h1>
             <div className="mb-4 flex items-center justify-between">
               <h2 className="truncate text-3xl font-bold">
                 {currentSongData.currentlyPlaying.name}

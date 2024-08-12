@@ -15,7 +15,6 @@ export default function Screens(props) {
   useRecentlyPlayed();
   const images = useStore((state) => state.images);
 
-  // Ensure images are correctly ordered to match monitor indices
   const imageUrls = [
     images[0] || "/images/default-green.jpg",
     images[1] || "/images/default-green.jpg",

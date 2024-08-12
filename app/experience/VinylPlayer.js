@@ -6,7 +6,7 @@ export default function VinylPlayer(props) {
   const { nodes, materials } = useGLTF("./models/vinyl-player.glb");
   const currentSong = useStore((state) => state.currentImageLow);
 
-  // Use useMemo to calculate rotation based on currentSong
+  // useMemo to calculate rotation based on currentSong
   const rotation = useMemo(() => {
     return currentSong ? [0, -0.9, 0.06] : [0, -0.459, 0];
   }, [currentSong]);
