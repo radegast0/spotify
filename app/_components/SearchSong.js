@@ -49,7 +49,7 @@ const SearchSong = () => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search for a song..."
+        placeholder="test"
         className="p-2 text-black"
       />
 
