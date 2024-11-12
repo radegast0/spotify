@@ -11,7 +11,7 @@ const RecentlyPlayed = () => {
     data: recentSongs,
     loading,
     error,
-  } = useApiFetch("/api/spotify", 10000);
+  } = useApiFetch("/api/spotify", 60000);
   const setImages = useStore((state) => state.setImages);
 
   useRecentlyPlayed();

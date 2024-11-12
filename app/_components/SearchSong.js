@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const SearchSong = () => {
@@ -6,9 +6,22 @@ const SearchSong = () => {
   const [results, setResults] = useState([]);
   const [status, setStatus] = useState(null);
 
-  const handleSearch = async () => {
-    if (!query) return;
+  // Debounced search function
+  useEffect(() => {
+    if (!query) {
+      setResults([]);
+      return;
+    }
 
+    const delayDebounceFn = setTimeout(() => {
+      handleSearch(query);
+    }, 300);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [query]);
+
+  // Function to handle search API call
+  const handleSearch = async (query) => {
     try {
       const response = await axios.post("/api/spotify", { query });
       setResults(response.data);
@@ -19,6 +32,7 @@ const SearchSong = () => {
     }
   };
 
+  // Function to handle adding song to the queue
   const handleAddToQueue = async (songUri) => {
     try {
       await axios.post("/api/spotify", { songUri });
@@ -30,30 +44,37 @@ const SearchSong = () => {
   };
 
   return (
-    <div>
+    <div className="absolute left-10 top-10 z-10">
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="test"
-        className="text-black p-2"
+        placeholder="Search for a song..."
+        className="p-2 text-black"
       />
-      <button onClick={handleSearch} className="bg-blue-500 text-white p-2 ml-2">
-        test
-      </button>
 
       {status && <p>{status}</p>}
 
       <div>
         {results.map((song) => (
-          <div key={song.id} className="p-2 border-b border-gray-700">
-            <p>{song.name} by {song.artists.map((artist) => artist.name).join(", ")}</p>
-            <button
-              onClick={() => handleAddToQueue(song.uri)}
-              className="bg-green-500 text-white p-1 mt-1"
-            >
-              Add to Queue
-            </button>
+          <div key={song.id} className="flex items-center border-b border-gray-700 p-2">
+            <img
+              src={song.album.images[1]?.url} // Use a medium-sized image
+              alt={song.name}
+              className="w-12 h-12 mr-3"
+            />
+            <div>
+              <p>
+                {song.name} by{" "}
+                {song.artists.map((artist) => artist.name).join(", ")}
+              </p>
+              <button
+                onClick={() => handleAddToQueue(song.uri)}
+                className="mt-1 bg-green-500 p-1 text-white"
+              >
+                Add to Queue
+              </button>
+            </div>
           </div>
         ))}
       </div>

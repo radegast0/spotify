@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const AddToQueueButton = ({ songUri }) => {
   const [status, setStatus] = useState(null);
@@ -31,4 +32,8 @@ const AddToQueueButton = ({ songUri }) => {
   );
 };
 
+AddToQueueButton.propTypes = {
+  songUri: PropTypes.string,
+}
 export default AddToQueueButton;
+
