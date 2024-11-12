@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useApiFetch = (url, interval = 60000, retries = 3, retryDelay = 2000) => {
+const useApiFetch = (url, interval = 10000, retries = 3, retryDelay = 2000) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

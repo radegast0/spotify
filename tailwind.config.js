@@ -16,6 +16,12 @@ module.exports = {
         2000: "2000ms",
         4000: "4000ms",
       },
+      colors: {
+        "spotify-green": "#1DB954",
+        // "spotify-black": "#191414",
+        // "spotify-white": "#FFFFFF",
+        // "spotify-gray": "#B3B3B3",
+      }
     },
   },
   plugins: [],

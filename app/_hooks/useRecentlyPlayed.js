@@ -3,7 +3,7 @@ import useApiFetch from "./useApiFetch";
 import useStore from "../store";
 
 const useRecentlyPlayed = () => {
-  const { data: recentSongs } = useApiFetch("/api/spotify", 60000);
+  const { data: recentSongs } = useApiFetch("/api/spotify", 10000);
   const setImages = useStore((state) => state.setImages);
   const setSongs = useStore((state) => state.setSongs);
 
@@ -15,7 +15,6 @@ const useRecentlyPlayed = () => {
       setImages(images);
       const songs = recentSongs.recentlyPlayed.map((song) => song);
       setSongs(songs);
-      // console.log('songs:',songs);
     }
   }, [recentSongs, setImages]);
 };
