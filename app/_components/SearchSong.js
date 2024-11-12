@@ -154,13 +154,13 @@ const SearchSong = ({ isOpen, onClose }) => {
                     <img
                       src={song.album.images[1]?.url}
                       alt={song.name}
-                      className="h-24 w-24 rounded object-cover"
+                      className="h-20 w-20 rounded object-cover md:h-24 md:w-24"
                     />
                     <div className="flex-1 overflow-hidden">
-                      <p className="truncate text-lg font-semibold">
+                      <p className="truncate text-sm font-semibold md:text-lg">
                         {song.name}
                       </p>
-                      <p className="text-md truncate text-gray-300">
+                      <p className="md:text-md truncate text-xs text-gray-300">
                         {song.artists.map((artist) => artist.name).join(", ")}
                       </p>
                       <button
