@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import AddToQueueButton from "../_components/AddToQueueButton";
 
 const SearchSong = () => {
   const [query, setQuery] = useState("");
@@ -36,11 +35,11 @@ const SearchSong = () => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search for a song..."
+        placeholder="test"
         className="text-black p-2"
       />
       <button onClick={handleSearch} className="bg-blue-500 text-white p-2 ml-2">
-        Search
+        test
       </button>
 
       {status && <p>{status}</p>}
