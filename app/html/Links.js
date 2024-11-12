@@ -4,12 +4,12 @@ import React, { useEffect, useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import gsap from "gsap";
 import useStore from "../store";
-import SideBar from "./SideBar";
+import PropTypes from "prop-types";
 
-const Links = () => {
+const Links = ({ openModal }) => {
   const link1Ref = useRef(null);
   const link2Ref = useRef(null);
-  const sideBar = useRef(null);
+  const modal = useRef(null);
   const monitorIndex = useStore((state) => state.monitorIndex);
   const isVinylSelected = useStore((state) => state.isVinylSelected);
 
@@ -18,11 +18,11 @@ const Links = () => {
 
   useEffect(() => {
     if (link1Ref.current && link2Ref.current) {
-      gsap.set([sideBar.current, link1Ref.current, link2Ref.current], {
+      gsap.set([modal.current, link1Ref.current, link2Ref.current], {
         x: -200,
         opacity: 0,
       });
-      gsap.to([sideBar.current, link1Ref.current, link2Ref.current], {
+      gsap.to([modal.current, link1Ref.current, link2Ref.current], {
         x: 0,
         opacity: 1,
         delay: 2.5,
@@ -40,7 +40,13 @@ const Links = () => {
       <>
         <div className="absolute bottom-2 left-2 z-10 md:bottom-10 md:left-10">
           <div className="flex flex-col gap-2 text-base font-semibold drop-shadow-[0_3px_3px_rgba(0,0,0,0.8)] md:gap-1 md:text-lg">
-            <SideBar ref={sideBar} />
+            <button
+              ref={modal}
+              onClick={openModal}
+              className="text-green-400 transition-colors duration-300 hover:cursor-pointer hover:text-spotify-green"
+            >
+              Add song to queue
+            </button>
             <Link
               ref={link1Ref}
               target="_blank"
@@ -68,4 +74,7 @@ const Links = () => {
   );
 };
 
+Links.propTypes = {
+  openModal: PropTypes.func.isRequired,
+}
 export default Links;

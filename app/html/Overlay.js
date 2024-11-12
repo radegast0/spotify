@@ -13,10 +13,10 @@ const Overlay = () => {
 
   return (
     <div className="text-white">
-      <button onClick={openModal} className="fixed top-2 right-2 z-10"> open </button>
+      {/* <button onClick={openModal} className="fixed top-2 right-2 z-10"> open </button> */}
       <RecentSongsInfo />
       <CurrentSongInfo />
-      <Links />
+      <Links openModal={openModal} />
       <SearchSong isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
