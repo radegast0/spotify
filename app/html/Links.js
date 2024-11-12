@@ -45,7 +45,7 @@ const Links = ({ openModal }) => {
               onClick={openModal}
               className="text-green-400 transition-colors duration-300 hover:cursor-pointer hover:text-spotify-green"
             >
-              Add song to queue
+              Add Song to My Queue
             </button>
             <Link
               ref={link1Ref}
