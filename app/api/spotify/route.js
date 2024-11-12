@@ -58,10 +58,30 @@ async function getProgress(accessToken) {
   return response.data;
 }
 
+async function addSongToQueue(accessToken, songUri) {
+  try {
+    const response = await axios.post(
+      "https://api.spotify.com/v1/me/player/queue",
+      null, // body is empty
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        params: {
+          uri: songUri, // The URI of the song to add to the queue
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error adding song to queue:", error);
+    throw new Error("Unable to add song to queue");
+  }
+}
+
 export async function GET() {
   try {
     const accessToken = await getAccessToken();
-
     const [recentlyPlayed, currentlyPlaying, progressData] = await Promise.all([
       getRecentlyPlayed(accessToken),
       getCurrentlyPlaying(accessToken),
@@ -76,5 +96,48 @@ export async function GET() {
       { error: "Failed to fetch data" },
       { status: 500 },
     );
+  }
+}
+
+export async function POST(request) {
+  try {
+    const { songUri, query } = await request.json();
+    const accessToken = await getAccessToken();
+
+    if (songUri) {
+      await addSongToQueue(accessToken, songUri);
+      return NextResponse.json({ message: "Song added to queue" });
+    } else if (query) {
+      const searchResults = await searchSpotify(accessToken, query);
+      return NextResponse.json(searchResults);
+    } else {
+      throw new Error("No song URI or search query provided");
+    }
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Failed to process request" },
+      { status: 500 }
+    );
+  }
+}
+
+
+async function searchSpotify(accessToken, query) {
+  try {
+    const response = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        q: query,
+        type: "track",
+        limit: 5, // Limit the number of results for simplicity
+      },
+    });
+    return response.data.tracks.items;
+  } catch (error) {
+    console.error("Error searching Spotify:", error);
+    throw new Error("Unable to search Spotify");
   }
 }
