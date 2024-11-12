@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaRegWindowClose } from "react-icons/fa";
 import PropTypes from "prop-types";
 import gsap from "gsap";
+import useStore from "../store";
 
 const SearchSong = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState("");
@@ -12,6 +13,7 @@ const SearchSong = ({ isOpen, onClose }) => {
   const [showResults, setShowResults] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
+  const currentSongData = useStore((state) => state.currentSongData);
 
   // Debounced search effect
   useEffect(() => {
@@ -90,14 +92,18 @@ const SearchSong = ({ isOpen, onClose }) => {
     >
       <div className="relative mx-auto flex w-full max-w-md flex-col gap-4 rounded-sm bg-white/10 p-6 shadow-lg transition-all">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-white">Search</h2>
+          {currentSongData ? (
+            <h2 className="text-2xl font-bold text-white">Search</h2>
+          ) : (
+            <h1>Feature unavailable while I&#39;m offline</h1>
+          )}
           <button
-            className="text-2xl font-bold text-white"
+            className="text-2xl font-bold"
             onClick={() => {
               onClose();
             }}
           >
-            <FaRegWindowClose className="hover:text-gray-300" />
+            <FaRegWindowClose className="transition-colors duration-100 hover:text-spotify-green" />
           </button>
         </div>
         <input
@@ -159,7 +165,12 @@ const SearchSong = ({ isOpen, onClose }) => {
                       </p>
                       <button
                         onClick={() => handleAddToQueue(song.uri)}
-                        className="mb-[2px] ml-auto mr-[2px] mt-2 flex rounded-sm bg-spotify-green px-3 py-1 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className={`mb-[2px] ml-auto mr-[2px] mt-2 flex rounded-sm bg-spotify-green px-3 py-1 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 ${
+                          !currentSongData
+                            ? "cursor-not-allowed bg-gray-500 hover:bg-gray-500"
+                            : ""
+                        }`}
+                        disabled={!currentSongData}
                       >
                         Add to Queue
                       </button>

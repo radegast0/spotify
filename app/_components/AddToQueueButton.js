@@ -12,11 +12,8 @@ const AddToQueueButton = ({ songUri }) => {
       return;
     }
 
-    console.log("Adding to queue:", songUri); // Log the song URI for debugging
-
     try {
       const response = await axios.post("/api/spotify", { songUri });
-      console.log("Song added to queue:", response); // Log the API response
       setStatus("Song added to the queue!");
     } catch (error) {
       console.error("Failed to add song to queue:", error); // Log the error
