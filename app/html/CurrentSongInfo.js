@@ -44,15 +44,13 @@ const CurrentSongInfo = () => {
               </h2>
             </div>
             <div className="mb-2 truncate text-lg">
-              <span className="font-semibold">Artist:</span>{" "}
               {currentSongData.currentlyPlaying.artists
                 .map((artist) => artist.name)
                 .join(", ")}
             </div>
 
             <div className="mb-2 flex">
-              <div className="mb-2 flex-1 truncate text-lg">
-                <span className="font-semibold">Album:</span>{" "}
+              <div className="mb-2 flex-1 truncate text-base">
                 {currentSongData.currentlyPlaying.album.name}
               </div>
               <div className="ml-2 mt-1 text-xl">
