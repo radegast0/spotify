@@ -132,7 +132,7 @@ async function searchSpotify(accessToken, query) {
       params: {
         q: query,
         type: "track",
-        limit: 5,
+        limit: 3,
       },
     });
     return response.data.tracks.items;
