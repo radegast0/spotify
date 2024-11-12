@@ -29,6 +29,10 @@ export default function VinylBox({ controlsRef, ...props }) {
         material={materials.dit2}
         position={[-0.023, 0, 0]}
       />
+      <mesh position={[1,1,1]}>
+        <meshBasicMaterial color={'hotpink'} />
+        <boxGeometry args={[1,1,1]} />
+      </mesh>
     </group>
   );
 }

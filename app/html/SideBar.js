@@ -6,7 +6,7 @@ const SideBar = React.forwardRef((props, ref) => {
       ref={ref}
       className="hover:text-spotify-green text-green-400 transition-colors duration-300 hover:cursor-pointer"
     >
-      {/* Add song to queue */}
+      Add song to queue
     </div>
   );
 });
