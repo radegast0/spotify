@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
 import useStore from "../store";
@@ -78,3 +79,4 @@ export default function VinylPlayer(props) {
 }
 
 useGLTF.preload("./models/vinyl-player.glb");
+/* eslint-enable react/no-unknown-property */

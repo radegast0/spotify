@@ -5,8 +5,9 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/industrial-work-light-ff0abe17dc64498191bb41c905d00ab0
 Title: Industrial Work Light
 */
+/* eslint-disable react/no-unknown-property */
 
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 
 export default function Light(props) {
@@ -38,3 +39,4 @@ export default function Light(props) {
 }
 
 useGLTF.preload("./models/light.glb");
+/* eslint-enable react/no-unknown-property */

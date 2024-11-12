@@ -5,6 +5,7 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/old-computers-7bb6e720499a467b8e0427451d180063
 Title: Old Computers
 */
+/* eslint-disable react/no-unknown-property */
 
 import React, { useEffect, useState } from "react";
 import { Outlines, useGLTF } from "@react-three/drei";
@@ -15,6 +16,7 @@ import {
   initialCameraPosition,
   mobileCameraPosition,
 } from "../_constants/cameraConfig";
+import PropTypes from "prop-types";
 
 export default function Computers({ controlsRef, ...props }) {
   const { nodes, materials } = useGLTF("./models/computers.glb");
@@ -81,3 +83,8 @@ export default function Computers({ controlsRef, ...props }) {
 }
 
 useGLTF.preload("./models/computers.glb");
+
+Computers.propTypes = {
+  controlsRef: PropTypes.object,
+};
+/* eslint-enable react/no-unknown-property */

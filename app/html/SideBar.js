@@ -10,5 +10,6 @@ const SideBar = React.forwardRef((props, ref) => {
     </div>
   );
 });
+SideBar.displayName = "SideBar";
 
 export default SideBar;

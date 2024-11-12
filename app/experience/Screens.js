@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Edges, Outlines, useGLTF, useTexture } from "@react-three/drei";
+/* eslint-disable react/no-unknown-property */
+import React from "react";
+import { useGLTF, useTexture } from "@react-three/drei";
 import useRecentlyPlayed from "../_hooks/useRecentlyPlayed";
 import useStore from "../store";
+import PropTypes from "prop-types";
 
 const TextureLoader = ({ url }) => {
   const texture = useTexture(url);
@@ -107,3 +109,7 @@ export default function Screens(props) {
 }
 
 useGLTF.preload("./models/screens.glb");
+TextureLoader.propTypes = {
+  url: PropTypes.string,
+};
+/* eslint-enable react/no-unknown-property */

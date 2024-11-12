@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Outlines, useGLTF, useTexture } from "@react-three/drei";
@@ -9,6 +10,11 @@ import {
   mobileCameraPosition,
   vinylPosition,
 } from "../_constants/cameraConfig";
+import PropTypes from "prop-types";
+
+VinylDisk.propTypes = {
+  controlsRef: PropTypes.object,
+}
 
 export function VinylDisk({ controlsRef, ...props }) {
   const { nodes, materials } = useGLTF("./models/vinyl-disk.glb");
@@ -90,3 +96,4 @@ export function VinylDisk({ controlsRef, ...props }) {
 useGLTF.preload("./models/vinyl-disk.glb");
 
 export default VinylDisk;
+/* eslint-enable react/no-unknown-property */

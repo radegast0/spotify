@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useGLTF, useTexture } from "@react-three/drei";
 import React from "react";
 
@@ -31,3 +32,4 @@ const Walls = () => {
 };
 
 export default Walls;
+/* eslint-enable react/no-unknown-property */

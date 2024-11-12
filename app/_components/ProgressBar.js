@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import PropTypes from "prop-types";
 
 const ProgressBar = ({ progressMs, durationMs }) => {
   const percentage = progressMs ? (progressMs / durationMs) * 100 : 0;
@@ -12,6 +13,11 @@ const ProgressBar = ({ progressMs, durationMs }) => {
       ></div>
     </div>
   );
+};
+
+ProgressBar.propTypes = {
+  progressMs: PropTypes.number,
+  durationMs: PropTypes.number,
 };
 
 export default ProgressBar;
