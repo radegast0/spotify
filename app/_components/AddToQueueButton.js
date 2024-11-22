@@ -31,6 +31,5 @@ const AddToQueueButton = ({ songUri }) => {
 
 AddToQueueButton.propTypes = {
   songUri: PropTypes.string,
-}
+};
 export default AddToQueueButton;
-
