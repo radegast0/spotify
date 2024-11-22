@@ -79,6 +79,46 @@ async function addSongToQueue(accessToken, songUri) {
   }
 }
 
+async function searchSpotify(accessToken, query) {
+  try {
+    const response = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        q: query,
+        type: "track",
+        limit: 3,
+      },
+    });
+    return response.data.tracks.items;
+  } catch (error) {
+    console.error("Error searching Spotify:", error);
+    throw new Error("Unable to search Spotify");
+  }
+}
+
+async function addSongToPlaylist(accessToken, playlistId, songUri) {
+  try {
+    const response = await axios.post(
+      `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+      {
+        uris: [songUri], // The URI of the song to add to the playlist
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error adding song to playlist:", error);
+    throw new Error("Unable to add song to playlist");
+  }
+}
+
 export async function GET() {
   try {
     const accessToken = await getAccessToken();
@@ -101,10 +141,13 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const { songUri, query } = await request.json();
+    const { songUri, query, playlistId } = await request.json();
     const accessToken = await getAccessToken();
 
-    if (songUri) {
+    if (songUri && playlistId) {
+      await addSongToPlaylist(accessToken, playlistId, songUri);
+      return NextResponse.json({ message: "Song added to playlist" });
+    } else if (songUri) {
       await addSongToQueue(accessToken, songUri);
       return NextResponse.json({ message: "Song added to queue" });
     } else if (query) {
@@ -117,27 +160,7 @@ export async function POST(request) {
     console.error(error);
     return NextResponse.json(
       { error: "Failed to process request" },
-      { status: 500 }
+      { status: 500 },
     );
-  }
-}
-
-
-async function searchSpotify(accessToken, query) {
-  try {
-    const response = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      params: {
-        q: query,
-        type: "track",
-        limit: 3,
-      },
-    });
-    return response.data.tracks.items;
-  } catch (error) {
-    console.error("Error searching Spotify:", error);
-    throw new Error("Unable to search Spotify");
   }
 }
