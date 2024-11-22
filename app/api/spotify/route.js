@@ -31,7 +31,7 @@ async function getRecentlyPlayed(accessToken) {
         Authorization: `Bearer ${accessToken}`,
       },
       params: {
-        limit: 8, // Limit the response to the last played song
+        limit: 8,
       },
     },
   );
@@ -62,13 +62,13 @@ async function addSongToQueue(accessToken, songUri) {
   try {
     const response = await axios.post(
       "https://api.spotify.com/v1/me/player/queue",
-      null, // body is empty
+      null,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
         params: {
-          uri: songUri, // The URI of the song to add to the queue
+          uri: songUri,
         },
       },
     );
@@ -103,7 +103,7 @@ async function addSongToPlaylist(accessToken, playlistId, songUri) {
     const response = await axios.post(
       `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
       {
-        uris: [songUri], // The URI of the song to add to the playlist
+        uris: [songUri],
       },
       {
         headers: {
@@ -146,6 +146,7 @@ export async function POST(request) {
 
     if (songUri && playlistId) {
       await addSongToPlaylist(accessToken, playlistId, songUri);
+      console.error("songUri or playlistId not provided");
       return NextResponse.json({ message: "Song added to playlist" });
     } else if (songUri) {
       await addSongToQueue(accessToken, songUri);
