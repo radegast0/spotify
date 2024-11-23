@@ -15,7 +15,6 @@ const SearchSong = ({ isOpen, onClose }) => {
   const ref = useRef(null);
   const currentSongData = useStore((state) => state.currentSongData);
 
-  // Debounced search effect
   useEffect(() => {
     if (!query) {
       setResults([]);
@@ -30,7 +29,6 @@ const SearchSong = ({ isOpen, onClose }) => {
     return () => clearTimeout(delayDebounceFn);
   }, [query]);
 
-  // Effect to clear status after 3 seconds
   useEffect(() => {
     if (status) {
       const timer = setTimeout(() => {
@@ -78,19 +76,26 @@ const SearchSong = ({ isOpen, onClose }) => {
         opacity: 0,
         duration: 0.3,
         ease: "power3.inOut",
-        onComplete: () => setIsVisible(false), // Delay unmounting until the animation completes
+        onComplete: () => setIsVisible(false), 
       });
     }
   }, [isOpen]);
+
+  const handleCloseModal = (e) => {
+    if (e.target === ref.current) {
+      onClose();
+    }
+  };
 
   if (!isVisible) return <div ref={ref}></div>;
 
   return (
     <div
       ref={ref}
+      onClick={handleCloseModal} 
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
     >
-      <div className="relative mx-auto flex w-full max-w-md flex-col gap-4 rounded-sm bg-white/10 p-6 shadow-lg transition-all">
+      <div className="relative mx-auto flex w-full max-w-md flex-col gap-4 rounded-sm bg-white/10 p-6 shadow-lg">
         <div className="flex items-center justify-between">
           {currentSongData ? (
             <h2 className="text-2xl font-bold text-white">Search</h2>
@@ -138,12 +143,12 @@ const SearchSong = ({ isOpen, onClose }) => {
                     key={index}
                     className="flex items-center gap-3 rounded-sm bg-white/5 p-3 text-white"
                   >
-                    <div className="h-24 w-24 animate-pulse rounded bg-gray-400" />
+                    <div className="h-20 w-20 animate-pulse rounded bg-gray-400 md:h-24 md:w-24" />
                     <div className="flex-1">
-                      <div className="-mt-7 mb-2 h-5 w-4/5 animate-pulse rounded bg-gray-400" />
-                      <div className="h-4 w-1/2 animate-pulse rounded bg-gray-400" />
+                      <div className="-mt-7 mb-2 h-4 w-4/5 animate-pulse rounded bg-gray-400 md:h-5" />
+                      <div className="h-3 w-1/2 animate-pulse rounded bg-gray-400" />
                     </div>
-                    <div className="mt-12 h-7 w-28 animate-pulse rounded bg-gray-400" />
+                    <div className="mt-10 h-7 w-28 animate-pulse rounded bg-gray-400 md:mt-12" />
                   </div>
                 ))
               : results.map((song) => (

@@ -15,15 +15,13 @@ const RecentSongsInfo = () => {
       ? songs[monitorIndex]
       : null;
 
-  // Format the played_at timestamp
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return formatDistanceToNow(date, { addSuffix: true }).replace("about ", "");
   };
 
-  // Close the song info display
   const closeSongInfo = () => {
-    setMonitorIndex(null); // Reset the monitorIndex to close the song info
+    setMonitorIndex(null);
   };
 
   return (

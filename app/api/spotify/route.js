@@ -1,135 +1,38 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
+import { addSongToPlaylist, getPlaylist } from "@/app/lib/playlist";
+import { searchSpotify } from "@/app/lib/search";
+import { getAccessToken } from "@/app/lib/accessToken";
+import { getRecentlyPlayed } from "@/app/lib/recentlyPlayed";
+import { getCurrentlyPlaying, getProgress } from "@/app/lib/currentlyPlaying";
+import { addSongToQueue } from "@/app/lib/queue";
 
 export const dynamic = "force-dynamic";
 
-async function getAccessToken() {
-  const refresh_token = process.env.REFRESH_TOKEN;
-  const response = await axios.post(
-    "https://accounts.spotify.com/api/token",
-    new URLSearchParams({
-      grant_type: "refresh_token",
-      refresh_token: refresh_token,
-    }),
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${Buffer.from(
-          `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`,
-        ).toString("base64")}`,
-      },
-    },
-  );
-  return response.data.access_token;
-}
-
-async function getRecentlyPlayed(accessToken) {
-  const response = await axios.get(
-    "https://api.spotify.com/v1/me/player/recently-played?",
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      params: {
-        limit: 8,
-      },
-    },
-  );
-  return response.data.items;
-}
-
-async function getCurrentlyPlaying(accessToken) {
-  const response = await axios.get(
-    "https://api.spotify.com/v1/me/player/currently-playing",
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    },
-  );
-  return response.data.item;
-}
-async function getProgress(accessToken) {
-  const response = await axios.get("https://api.spotify.com/v1/me/player", {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  return response.data;
-}
-
-async function addSongToQueue(accessToken, songUri) {
-  try {
-    const response = await axios.post(
-      "https://api.spotify.com/v1/me/player/queue",
-      null,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-        params: {
-          uri: songUri,
-        },
-      },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error adding song to queue:", error);
-    throw new Error("Unable to add song to queue");
-  }
-}
-
-async function searchSpotify(accessToken, query) {
-  try {
-    const response = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      params: {
-        q: query,
-        type: "track",
-        limit: 3,
-      },
-    });
-    return response.data.tracks.items;
-  } catch (error) {
-    console.error("Error searching Spotify:", error);
-    throw new Error("Unable to search Spotify");
-  }
-}
-
-async function addSongToPlaylist(accessToken, playlistId, songUri) {
-  try {
-    const response = await axios.post(
-      `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-      {
-        uris: [songUri],
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error adding song to playlist:", error);
-    throw new Error("Unable to add song to playlist");
-  }
-}
-
-export async function GET() {
+export async function GET(request) {
   try {
     const accessToken = await getAccessToken();
-    const [recentlyPlayed, currentlyPlaying, progressData] = await Promise.all([
-      getRecentlyPlayed(accessToken),
-      getCurrentlyPlaying(accessToken),
-      getProgress(accessToken),
-    ]);
+    const { searchParams } = new URL(request.url);
+    const playlistId = searchParams.get("playlistId"); // Getting playlistId from query params
 
-    const responseData = { recentlyPlayed, currentlyPlaying, progressData };
-    return NextResponse.json(responseData);
+    if (playlistId) {
+      // Fetch the playlist details if playlistId is provided
+      const playlist = await getPlaylist(accessToken, playlistId);
+      return NextResponse.json({ playlist });
+    } else {
+      // If no playlistId is provided, return other data
+      const [recentlyPlayed, currentlyPlaying, progressData] =
+        await Promise.all([
+          getRecentlyPlayed(accessToken),
+          getCurrentlyPlaying(accessToken),
+          getProgress(accessToken),
+        ]);
+
+      return NextResponse.json({
+        recentlyPlayed,
+        currentlyPlaying,
+        progressData,
+      });
+    }
   } catch (error) {
     console.error(error);
     return NextResponse.json(
@@ -146,7 +49,6 @@ export async function POST(request) {
 
     if (songUri && playlistId) {
       await addSongToPlaylist(accessToken, playlistId, songUri);
-      console.error("songUri or playlistId not provided");
       return NextResponse.json({ message: "Song added to playlist" });
     } else if (songUri) {
       await addSongToQueue(accessToken, songUri);

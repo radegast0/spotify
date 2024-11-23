@@ -6,17 +6,12 @@ const AddToQueueButton = ({ songUri }) => {
   const [status, setStatus] = useState(null);
 
   const addToQueue = async () => {
-    // Check if songUri is provided
-    if (!songUri) {
-      setStatus("No song URI provided.");
-      return;
-    }
+    if (!songUri) return setStatus("No song URI provided.");
 
     try {
-      const response = await axios.post("/api/spotify", { songUri });
+      await axios.post("/api/spotify", { songUri });
       setStatus("Song added to the queue!");
-    } catch (error) {
-      console.error("Failed to add song to queue:", error); // Log the error
+    } catch {
       setStatus("Failed to add song to queue.");
     }
   };
@@ -24,12 +19,13 @@ const AddToQueueButton = ({ songUri }) => {
   return (
     <div>
       <button onClick={addToQueue}>Add to Queue</button>
-      {status && <p>{status}</p>} {/* Show status message */}
+      {status && <p>{status}</p>}
     </div>
   );
 };
 
 AddToQueueButton.propTypes = {
-  songUri: PropTypes.string,
+  songUri: PropTypes.string.isRequired,  // Ensures songUri is always provided
 };
+
 export default AddToQueueButton;
