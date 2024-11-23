@@ -12,14 +12,12 @@ export async function GET(request) {
   try {
     const accessToken = await getAccessToken();
     const { searchParams } = new URL(request.url);
-    const playlistId = searchParams.get("playlistId"); // Getting playlistId from query params
+    const playlistId = searchParams.get("playlistId");
 
     if (playlistId) {
-      // Fetch the playlist details if playlistId is provided
       const playlist = await getPlaylist(accessToken, playlistId);
       return NextResponse.json({ playlist });
     } else {
-      // If no playlistId is provided, return other data
       const [recentlyPlayed, currentlyPlaying, progressData] =
         await Promise.all([
           getRecentlyPlayed(accessToken),

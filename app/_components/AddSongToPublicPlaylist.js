@@ -131,7 +131,7 @@ const AddSongToPublicPlaylist = ({ isOpen, onClose }) => {
                     {playlistData.name}
                     {/* Public playlist by the people */}
                   </h3>
-                  <p className="flex items-center gap-2 text-base font-bold tracking-wide text-white group-hover:text-spotify-green md:text-xl">
+                  <p className="flex items-center gap-2 text-base font-bold tracking-wide text-white transition-colors duration-300 group-hover:text-spotify-green md:text-xl">
                     <span>visit</span>
                     <span>
                       <FaExternalLinkAlt size={14} />

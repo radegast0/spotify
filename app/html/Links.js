@@ -3,9 +3,11 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import useStore from "../store";
 import PropTypes from "prop-types";
+import Link from "next/link";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const Links = ({ openModal, openModal2 }) => {
-  // const link1Ref = useRef(null);
+  const link1Ref = useRef(null);
   // const link2Ref = useRef(null);
   const modal = useRef(null);
   const modal2 = useRef(null);
@@ -16,12 +18,12 @@ const Links = ({ openModal, openModal2 }) => {
   // console.log("isVinylSelected", isVinylSelected);
 
   useEffect(() => {
-    if (modal.current && modal2.current) {
-      gsap.set([modal.current, modal2.current], {
+    if (modal.current && modal2.current && link1Ref.current) {
+      gsap.set([modal.current, modal2.current, link1Ref.current], {
         x: -200,
         opacity: 0,
       });
-      gsap.to([modal.current, modal2.current], {
+      gsap.to([modal.current, modal2.current, link1Ref.current], {
         x: 0,
         opacity: 1,
         delay: 2.5,
@@ -30,7 +32,7 @@ const Links = ({ openModal, openModal2 }) => {
         stagger: 0.35,
       });
     }
-  }, [modal, modal2]);
+  }, [modal, modal2, link1Ref]);
 
   return (
     !monitorIndex &&
@@ -67,17 +69,29 @@ const Links = ({ openModal, openModal2 }) => {
             <button
               ref={modal}
               onClick={openModal}
-              className="text-start transition-colors duration-300 hover:cursor-pointer hover:text-spotify-green"
+              className="text-start text-green-500 transition-colors duration-300 hover:cursor-pointer hover:text-spotify-green"
             >
               Add Song to My Queue
             </button>
             <button
-              className="text-start transition-colors duration-300 hover:cursor-pointer hover:text-spotify-green"
+              className="text-start text-green-500 transition-colors duration-300 hover:cursor-pointer hover:text-spotify-green"
               ref={modal2}
               onClick={openModal2}
             >
               Add Song to Public Playlist
             </button>
+            <Link
+              ref={link1Ref}
+              target="_blank"
+              href={
+                "https://open.spotify.com/user/mot%C3%B6rkafa?si=ueGATfW7SXuE12f1i54p9w"
+              }
+            >
+              <span className="group flex items-center gap-1 transition-all duration-300 hover:gap-2">
+                Spotify Profile{" "}
+                <FiArrowUpRight className="transition-all duration-300 group-hover:-mt-1 group-hover:text-spotify-green" />
+              </span>
+            </Link>
           </div>
         </div>
       </>
