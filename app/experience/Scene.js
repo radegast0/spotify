@@ -101,6 +101,7 @@ const Scene = () => {
       <Computers controlsRef={controlsRef} />
       <VinylPlayer />
       <Light />
+      <ambientLight intensity={.14} />
       {/* <Walls /> */}
       <OrbitControls enableZoom={false} dampingFactor={0} ref={controlsRef} />
       <VinylBox controlsRef={controlsRef} />
