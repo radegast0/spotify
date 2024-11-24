@@ -19,7 +19,7 @@ const Overlay = () => {
     <div className="text-white">
       <RecentSongsInfo />
       <CurrentSongInfo />
-      <Links openModal2={openModal2} openModal={openModal} />
+      {/* <Links openModal2={openModal2} openModal={openModal} /> */}
       <SearchSong isOpen={isModalOpen} onClose={closeModal} />
       <AddSongToPublicPlaylist isOpen={isModal2Open} onClose={closeModal2} />
     </div>
