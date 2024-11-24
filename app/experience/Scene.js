@@ -97,12 +97,11 @@ const Scene = () => {
 
   return (
     <>
-      {/* <Environment preset="warehouse" environmentIntensity={0.3} /> */}
+      <Environment preset="warehouse" environmentIntensity={0.3} />
       <Computers controlsRef={controlsRef} />
       <VinylPlayer />
       <Light />
-      <ambientLight intensity={.14} />
-      {/* <Walls /> */}
+      <Walls />
       <OrbitControls enableZoom={false} dampingFactor={0} ref={controlsRef} />
       <VinylBox controlsRef={controlsRef} />
       <Suspense fallback={<ScreensFallback />}>
