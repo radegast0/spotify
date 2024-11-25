@@ -98,7 +98,7 @@ const Scene = () => {
   return (
     <>
       <Environment preset="warehouse" environmentIntensity={0.3} />
-      <Computers controlsRef={controlsRef} />
+      {/* <Computers controlsRef={controlsRef} /> */}
       <VinylPlayer />
       <Light />
       <Walls />
