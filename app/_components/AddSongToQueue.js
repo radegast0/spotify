@@ -76,7 +76,7 @@ const SearchSong = ({ isOpen, onClose }) => {
         opacity: 0,
         duration: 0.3,
         ease: "power3.inOut",
-        onComplete: () => setIsVisible(false), 
+        onComplete: () => setIsVisible(false),
       });
     }
   }, [isOpen]);
@@ -92,7 +92,7 @@ const SearchSong = ({ isOpen, onClose }) => {
   return (
     <div
       ref={ref}
-      onClick={handleCloseModal} 
+      onClick={handleCloseModal}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
     >
       <div className="relative mx-auto flex w-full max-w-md flex-col gap-4 rounded-sm bg-white/10 p-6 shadow-lg">
@@ -134,11 +134,13 @@ const SearchSong = ({ isOpen, onClose }) => {
         </div>
 
         <div
-          className={`max-h-96 overflow-hidden transition-all duration-500 ${showResults ? "max-h-96" : "max-h-0"}`}
+          className={`scrollbar-style max-h-96 overflow-y-auto transition-all duration-500 ${
+            showResults ? "max-h-96" : "max-h-0"
+          }`}
         >
           <div className="space-y-3">
             {loading
-              ? [...Array(3)].map((_, index) => (
+              ? [...Array(4)].map((_, index) => (
                   <div
                     key={index}
                     className="flex items-center gap-3 rounded-sm bg-white/5 p-3 text-white"
@@ -159,7 +161,7 @@ const SearchSong = ({ isOpen, onClose }) => {
                     <img
                       src={song.album.images[1]?.url}
                       alt={song.name}
-                      className="h-20 w-20 rounded object-cover md:h-24 md:w-24"
+                      className="h-20 w-20 rounded bg-gray-300 object-cover md:h-24 md:w-24"
                     />
                     <div className="flex-1 overflow-hidden">
                       <p className="truncate text-sm font-semibold md:text-lg">

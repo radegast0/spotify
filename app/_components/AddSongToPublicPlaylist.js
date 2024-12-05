@@ -124,7 +124,7 @@ const AddSongToPublicPlaylist = ({ isOpen, onClose }) => {
                 <img
                   src={playlistData.images[0]?.url}
                   alt={playlistData.name}
-                  className="h-20 w-20 rounded-md object-cover sm:h-24 sm:w-24"
+                  className="h-20 w-20 rounded-md bg-gray-300 object-cover sm:h-24 sm:w-24"
                 />
                 <div className="flex h-16 flex-col sm:h-24">
                   <h3 className="text-base font-bold text-white md:text-xl">
@@ -164,7 +164,7 @@ const AddSongToPublicPlaylist = ({ isOpen, onClose }) => {
                   <img
                     src={track.track.album.images[2]?.url}
                     alt={track.track.name}
-                    className="mr-2 h-8 w-8 rounded object-cover md:h-12 md:w-12"
+                    className="mr-2 h-8 w-8 rounded bg-gray-300 object-cover md:h-12 md:w-12"
                   />
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold text-white">
@@ -206,7 +206,7 @@ const AddSongToPublicPlaylist = ({ isOpen, onClose }) => {
               <img
                 src={song.album.images[2]?.url}
                 alt={song.name}
-                className="mr-2 h-10 w-10 rounded-sm object-cover md:h-12 md:w-12"
+                className="mr-2 h-10 w-10 rounded-sm bg-gray-300 object-cover md:h-12 md:w-12"
               />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-semibold text-white">

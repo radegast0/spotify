@@ -16,6 +16,7 @@ import {
   initialCameraPosition,
   mobileCameraPosition,
 } from "../_constants/cameraConfig";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 
 const Scene = () => {
   const controlsRef = useRef();
@@ -58,23 +59,23 @@ const Scene = () => {
 
   const handleMouseMove = useCallback(
     (event) => {
-      if (!monitorIndex) {
-        const x = (event.clientX / window.innerWidth) * 2 - 1;
-        const y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-        if (
-          Math.abs(x - prevX.current) > 0.01 ||
-          Math.abs(y - prevY.current) > 0.01
-        ) {
-          prevX.current = x;
-          prevY.current = y;
-          gsap.to(controlsRef.current.target, {
-            x: x * 0.3,
-            y: y * 0.3,
-            ease: "power2.out",
-            duration: 0.5,
-          });
-        }
+      if (window.innerWidth < 768 || monitorIndex) {
+        return;
+      }
+      const x = (event.clientX / window.innerWidth) * 2 - 1;
+      const y = -(event.clientY / window.innerHeight) * 2 + 1;
+      if (
+        Math.abs(x - prevX.current) > 0.01 ||
+        Math.abs(y - prevY.current) > 0.01
+      ) {
+        prevX.current = x;
+        prevY.current = y;
+        gsap.to(controlsRef.current.target, {
+          x: x * 0.3,
+          y: y * 0.3,
+          ease: "power2.out",
+          duration: 0.5,
+        });
       }
     },
     [monitorIndex],
@@ -98,6 +99,9 @@ const Scene = () => {
   return (
     <>
       <Environment preset="warehouse" environmentIntensity={0.3} />
+      <EffectComposer>
+        <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.4} height={300} />
+      </EffectComposer>
       <Computers controlsRef={controlsRef} />
       <VinylPlayer />
       <Light />
