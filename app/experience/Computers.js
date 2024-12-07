@@ -65,8 +65,14 @@ export default function Computers({ controlsRef, ...props }) {
         .filter((node) => node.startsWith("monitor"))
         .map((monitor, index) => (
           <mesh
-            onPointerEnter={() => setHovered(monitor)}
-            onPointerLeave={() => setHovered(null)}
+            onPointerEnter={() => {
+              setHovered(monitor);
+              document.body.style.cursor = "pointer";
+            }}
+            onPointerLeave={() => {
+              setHovered(null);
+              document.body.style.cursor = "grab";
+            }}
             onClick={() => handleClick(index)}
             key={index}
             castShadow

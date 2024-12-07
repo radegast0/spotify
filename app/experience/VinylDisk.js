@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 
 VinylDisk.propTypes = {
   controlsRef: PropTypes.object,
-}
+};
 
 export function VinylDisk({ controlsRef, ...props }) {
   const { nodes, materials } = useGLTF("./models/vinyl-disk.glb");
@@ -61,7 +61,17 @@ export function VinylDisk({ controlsRef, ...props }) {
   };
 
   return (
-    <group {...props}>
+    <group
+      onPointerEnter={() => {
+        setHovered(true);
+        document.body.style.cursor = "pointer";
+      }}
+      onPointerLeave={() => {
+        setHovered(false);
+        document.body.style.cursor = "grab";
+      }}
+      {...props}
+    >
       <mesh
         ref={vinylDiskInner}
         castShadow
@@ -86,8 +96,6 @@ export function VinylDisk({ controlsRef, ...props }) {
         rotation={[-1.571, 0, 0]}
         scale={2.462}
         onClick={handleClick}
-        onPointerEnter={() => setHovered(true)}
-        onPointerLeave={() => setHovered(false)}
       >
         {hovered && <Outlines thickness={0.005} angle={10} color={"white"} />}
       </mesh>

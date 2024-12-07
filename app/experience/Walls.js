@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { OrbitControls, useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import React from "react";
 
 const Walls = () => {
@@ -17,9 +17,9 @@ const Walls = () => {
 
   return (
     <>
-      <mesh rotation={[Math.PI / 2, 0, 0]} position={[-5.5, 5.635, 0]}>
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[-5.5, 5.635, -6]}>
         <meshBasicMaterial color="white" />
-        <planeGeometry args={[15, 2]} />
+        <planeGeometry args={[15, 15]} />
       </mesh>
       <mesh castShadow receiveShadow geometry={wallsNodes.junk.geometry}>
         <meshBasicMaterial map={wallsTexture} />

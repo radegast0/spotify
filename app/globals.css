@@ -17,29 +17,28 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-  user-select: none;
+  @apply cursor-grab active:!cursor-grabbing select-none;
+  /* other cursor stlyes in Computers.js */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
 
-.scrollbar-style::-webkit-scrollbar {
-  width: 6px;
-}
+  .scrollbar-style::-webkit-scrollbar {
+    @apply w-1.5;
+  }
 
-.scrollbar-style::-webkit-scrollbar-thumb {
-  background-color: #1db954;
-  border-radius: 10px;
-}
+  .scrollbar-style::-webkit-scrollbar-thumb {
+    @apply bg-spotify-green rounded-lg;
+  }
 
-.scrollbar-style::-webkit-scrollbar-thumb:hover {
-  background-color: #1ed760;
-}
+  .scrollbar-style::-webkit-scrollbar-thumb:hover {
+    @apply bg-spotify-green/70;
+  }
 
-.scrollbar-style::-webkit-scrollbar-track {
-  background-color: #272727;
-  border-radius: 10px;
+  .scrollbar-style::-webkit-scrollbar-track {
+    @apply bg-[#272727] rounded-lg;
+  }
 }
