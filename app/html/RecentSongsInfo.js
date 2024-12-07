@@ -9,6 +9,8 @@ const RecentSongsInfo = () => {
   const songs = useStore((state) => state.songs);
   const monitorIndex = useStore((state) => state.monitorIndex);
   const setMonitorIndex = useStore((state) => state.setMonitorIndex); // Access the function to update monitorIndex
+  const isVinylSelected = useStore((state) => state.isVinylSelected);
+  const setIsVinylSelected = useStore((state) => state.setIsVinylSelected);
 
   const selectedSong =
     monitorIndex !== null && monitorIndex >= 0 && monitorIndex < songs.length
@@ -22,11 +24,12 @@ const RecentSongsInfo = () => {
 
   const closeSongInfo = () => {
     setMonitorIndex(null);
+    setIsVinylSelected(false);
   };
 
   return (
     <>
-      {selectedSong && (
+      {!isVinylSelected && selectedSong && (
         <div className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/10 p-6 shadow-lg">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="truncate text-2xl font-bold">

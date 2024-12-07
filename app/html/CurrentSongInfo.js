@@ -22,9 +22,11 @@ const CurrentSongInfo = () => {
   const currentSongData = useStore((state) => state.currentSongData);
   const isVinylSelected = useStore((state) => state.isVinylSelected);
   const setIsVinylSelected = useStore((state) => state.setIsVinylSelected);
+  const setMontiorIndex = useStore((state) => state.setMonitorIndex);
 
   const handleClose = () => {
     setIsVinylSelected(false);
+    setMontiorIndex(null);
   };
 
   return (

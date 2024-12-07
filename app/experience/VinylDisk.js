@@ -27,6 +27,8 @@ export function VinylDisk({ controlsRef, ...props }) {
   const isVinylSelected = useStore((state) => state.isVinylSelected);
   const setIsVinylSelected = useStore((state) => state.setIsVinylSelected);
 
+  const monitorIndex = useStore((state) => state.monitorIndex);
+
   const moveCamera = useCameraRig(controlsRef);
 
   const [hovered, setHovered] = useState(false);
@@ -43,7 +45,7 @@ export function VinylDisk({ controlsRef, ...props }) {
   });
 
   useEffect(() => {
-    if (!isVinylSelected) {
+    if (!isVinylSelected && monitorIndex === null) {
       const isMobile = window.innerWidth < 768;
       const cameraConfig = isMobile
         ? mobileCameraPosition

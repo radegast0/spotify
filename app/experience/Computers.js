@@ -25,9 +25,10 @@ export default function Computers({ controlsRef, ...props }) {
   const setMonitorIndex = useStore((state) => state.setMonitorIndex);
   const monitorIndex = useStore((state) => state.monitorIndex);
   const isVinylSelected = useStore((state) => state.isVinylSelected);
+  const setIsVinylSelected = useStore((state) => state.setIsVinylSelected);
 
   useEffect(() => {
-    if (monitorIndex === null) {
+    if (monitorIndex === null && !isVinylSelected) {
       const isMobile = window.innerWidth < 768;
       if (isMobile) {
         moveCamera(mobileCameraPosition.position, mobileCameraPosition.target);
@@ -42,9 +43,10 @@ export default function Computers({ controlsRef, ...props }) {
 
   const handleClick = (index) => {
     const cameraConfig = cameraPositions[index];
-    if (cameraConfig && !isVinylSelected) {
+    if (cameraConfig) {
       moveCamera(cameraConfig.position, cameraConfig.target);
       setMonitorIndex(cameraConfig.index);
+      setIsVinylSelected(false);
     }
   };
 
