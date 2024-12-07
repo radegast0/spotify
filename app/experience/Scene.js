@@ -10,7 +10,6 @@ import VinylDisk from "./VinylDisk";
 import ScreensFallback from "./ScreensFallback";
 import Screens from "./Screens";
 import Cover from "./Cover";
-import useStore from "../store";
 import Walls from "./Walls";
 import {
   initialCameraPosition,
@@ -20,10 +19,6 @@ import { Bloom, EffectComposer } from "@react-three/postprocessing";
 
 const Scene = () => {
   const controlsRef = useRef();
-  const monitorIndex = useStore((state) => state.monitorIndex);
-  const isVinylSelected = useStore((state) => state.isVinylSelected);
-  const prevX = useRef(0);
-  const prevY = useRef(0);
 
   const updateCameraPosition = useCallback(() => {
     const isMobile = window.innerWidth < 768;
