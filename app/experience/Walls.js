@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unknown-property */
-import { useGLTF, useTexture } from "@react-three/drei";
+import { OrbitControls, useGLTF, useTexture } from "@react-three/drei";
 import React from "react";
 
 const Walls = () => {
   // Load models
-  const { nodes: wallsNodes } = useGLTF("./models/walls3.glb", true); // Preload the GLTF
+  const { nodes: wallsNodes } = useGLTF("./models/walls.glb", true); // Preload the GLTF
   const { nodes: groundNodes } = useGLTF("./models/ground.glb", true); // Preload the GLTF
 
   // Load textures
-  const wallsTexture = useTexture("./textures/walls-baked-3.jpg");
+  const wallsTexture = useTexture("./textures/walls.jpg");
   const groundTexture = useTexture("./textures/ground.jpg");
 
   // Flip textures if necessary
@@ -21,7 +21,7 @@ const Walls = () => {
         <meshBasicMaterial color="white" />
         <planeGeometry args={[15, 2]} />
       </mesh>
-      <mesh geometry={wallsNodes.Cube002.geometry}>
+      <mesh castShadow receiveShadow geometry={wallsNodes.junk.geometry}>
         <meshBasicMaterial map={wallsTexture} />
       </mesh>
       <mesh geometry={groundNodes.ground.geometry}>
