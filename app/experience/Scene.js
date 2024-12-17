@@ -56,7 +56,7 @@ const Scene = () => {
     <>
       <Environment preset="warehouse" environmentIntensity={0.3} />
       <EffectComposer>
-        <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.4} height={300} />
+        <Bloom luminanceThreshold={0.5} luminanceSmoothing={0} height={300} />
       </EffectComposer>
       <Computers controlsRef={controlsRef} />
       <VinylPlayer />
