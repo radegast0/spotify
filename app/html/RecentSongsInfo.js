@@ -46,7 +46,7 @@ const RecentSongsInfo = () => {
       {!isVinylSelected && selectedSong && (
         <div
           ref={modalRef}
-          className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/10 p-6 shadow-lg"
+          className="fixed bottom-10 rounded-sm left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/10 p-6 shadow-lg"
         >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="truncate text-2xl font-bold">

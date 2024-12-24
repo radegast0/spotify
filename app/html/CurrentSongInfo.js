@@ -11,7 +11,7 @@ const ProgressBar = ({ progressMs, durationMs }) => {
   return (
     <div className="h-[6px] w-full rounded-r-full bg-white">
       <div
-        className="h-full bg-spotify-green transition-all duration-4000 ease-linear"
+        className="h-full bg-[#212121] rounded-r-full transition-all duration-4000 ease-linear"
         style={{ width: `${percentage}%` }}
       ></div>
     </div>
@@ -47,7 +47,7 @@ const CurrentSongInfo = () => {
     isVinylSelected && (
       <div
         ref={modalRef}
-        className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/20 p-6 shadow-2xl"
+        className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/20 rounded-sm p-6 shadow-2xl"
       >
         {currentSongData ? (
           <>
@@ -93,7 +93,7 @@ const CurrentSongInfo = () => {
               No song is currently playing
             </div>
             <button className="text-2xl font-bold" onClick={handleClose}>
-              <FaRegWindowClose className="hover:text-gray-300" />
+              <FaRegWindowClose className="hover:text-spotify-green" />
             </button>
           </div>
         )}
