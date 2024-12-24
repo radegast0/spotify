@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import useStore from "../store";
 import Link from "next/link";
 import { FaExternalLinkAlt, FaRegWindowClose } from "react-icons/fa";
@@ -11,7 +11,7 @@ const ProgressBar = ({ progressMs, durationMs }) => {
   return (
     <div className="h-[6px] w-full rounded-r-full bg-white">
       <div
-        className="h-full bg-red-500 transition-all duration-4000 ease-linear"
+        className="h-full bg-spotify-green transition-all duration-4000 ease-linear"
         style={{ width: `${percentage}%` }}
       ></div>
     </div>
@@ -23,6 +23,20 @@ const CurrentSongInfo = () => {
   const isVinylSelected = useStore((state) => state.isVinylSelected);
   const setIsVinylSelected = useStore((state) => state.setIsVinylSelected);
   const setMontiorIndex = useStore((state) => state.setMonitorIndex);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        handleClose();
+      }
+    };
+
+    document.addEventListener("mouseup", handleClick);
+    return () => {
+      document.removeEventListener("mouseup", handleClick);
+    };
+  }, [modalRef]);
 
   const handleClose = () => {
     setIsVinylSelected(false);
@@ -31,13 +45,16 @@ const CurrentSongInfo = () => {
 
   return (
     isVinylSelected && (
-      <div className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/20 p-6 shadow-lg">
+      <div
+        ref={modalRef}
+        className="fixed bottom-10 left-1/2 z-10 w-full max-w-md -translate-x-1/2 bg-white/20 p-6 shadow-2xl"
+      >
         {currentSongData ? (
           <>
             <div className="flex items-center justify-between">
               <h1 className="mb-2">Currently Playing</h1>
               <button className="text-2xl font-bold" onClick={handleClose}>
-                <FaRegWindowClose className="hover:text-red-500" />
+                <FaRegWindowClose className="transition-colors duration-200 hover:text-spotify-green" />
               </button>
             </div>
             <div className="mb-4">
@@ -61,7 +78,7 @@ const CurrentSongInfo = () => {
                   target="_blank"
                   href={currentSongData.currentlyPlaying.external_urls.spotify}
                 >
-                  <FaExternalLinkAlt className="hover:text-red-500" />
+                  <FaExternalLinkAlt className="hover:text-spotify-green" />
                 </Link>
               </div>
             </div>
