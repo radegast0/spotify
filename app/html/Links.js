@@ -86,6 +86,7 @@ const Links = ({ openModal, openModal2 }) => {
               href={
                 "https://github.com/radegast0/spotify"
               }
+              className="w-fit"
             >
               <span className="group flex items-center gap-1 transition-all duration-300 hover:gap-2">
                 GitHub Repo{" "}
