@@ -84,11 +84,11 @@ const Links = ({ openModal, openModal2 }) => {
               ref={link1Ref}
               target="_blank"
               href={
-                "https://open.spotify.com/user/mot%C3%B6rkafa?si=ueGATfW7SXuE12f1i54p9w"
+                "https://github.com/radegast0/spotify"
               }
             >
               <span className="group flex items-center gap-1 transition-all duration-300 hover:gap-2">
-                Spotify Profile{" "}
+                GitHub Repo{" "}
                 <FiArrowUpRight className="transition-all duration-300 group-hover:-mt-1 group-hover:text-spotify-green" />
               </span>
             </Link>
